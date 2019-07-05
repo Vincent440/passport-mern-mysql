@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS passportmern;
-CREATE DATABASE passportmern;
-USE passportmern;
+-- DROP DATABASE IF EXISTS passportmern;
+-- CREATE DATABASE passportmern;
+-- USE passportmern;
 
 set foreign_key_checks=0;
 
