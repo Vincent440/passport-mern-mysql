@@ -25,14 +25,5 @@ router.route("/:id")
 // DELETE "/api/users/:id"
 .delete(userController.deleteUserById);// delete a user by ID
 
-// '/api/user/status' route
-router.route("/status").post((req,res)=>{
-    if(req.isAuthenticated){
-      res.status(200).json({ user: req.user, isLoggedIn: req.isAuthenticated() });
-    }
-    else if (req.isUnauthenticated()){
-      res.status(401).send("User is not logged in currently.");
-    }
-});
 
 module.exports = router;

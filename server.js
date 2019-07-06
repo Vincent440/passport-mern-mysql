@@ -9,22 +9,18 @@ const routes = require("./routes");
 const PORT = process.env.PORT;// Stored in .env File along with DB Config. 
 require('./controllers/passportController')(passport); // pass passport for configuration
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
 app.use(cookieParser('mysqlpassportmernreact'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
-        secret: 'mysqlpassportmernreact',
-        resave: false,
-        saveUninitialized: false 
-    })
-);
-
+    resave: false,
+    saveUninitialized: false,
+    secret: 'mysqlpassportmernreact'
+}));
 app.use(passport.initialize());
 app.use(passport.session());
-
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-}
 app.use(routes);
-
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}.`));

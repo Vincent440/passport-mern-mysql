@@ -5,9 +5,9 @@ require("../../controllers/passportController")(passport);
 // Matches with "api/logout"
 router.route("/").get(
     function(req, res) {
-        console.log("\nLogging User out.\n\nUser Is Logged Out: " + req.isUnauthenticated());
         req.logout();
-        res.status(200).send("User Is Logged Out: " + req.isUnauthenticated());
+        console.log("\nLogging User out.\n\nUser Is Logged Out: " + req.isUnauthenticated());
+        res.status(200).json({ user:{}, loggedIn: req.isAuthenticated() });
     }
 );
 

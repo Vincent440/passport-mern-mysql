@@ -1,34 +1,37 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
 import Login from "./pages/Login";
+import TopNav from "./components/TopNav";
 import Dashboard from "./pages/Dashboard";
-import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
-import Container from 'react-bootstrap/Container'
 
-
-class App extends Component {
+class App extends React.Component {
   state = {
     user:{},
     loggedIn:false
-  }
-
-  logInUser = (user) => {
-    this.setState({user:user})
-  }
+  };
+  
+  setAppUserStatus = user => {
+    this.setState({
+        user: user
+    });
+  };
+  updateAppLoginState = boolean => {
+      this.setState({
+          loggedIn: boolean
+      });
+  };
+  
   render() {
     return (
       <Router>
-        <div>
-          <Nav />
-          <Container>
+        <Container fluid>
+          <TopNav />
           <Switch>
-            <Route exact path="/login" component={Login} user={this.state.user} loggedIn={this.state.loggedIn} logInUser={()=>this.logInUser} />
-            <Route exact path="/" component={Dashboard} />
-            <Route component={NoMatch} />
+            <Route exact path="/" component={Login} />
+            <Route exact path="/welcome" component={Dashboard} />
           </Switch>
-          </Container>
-        </div>
+        </Container>
       </Router>
     );
   }
