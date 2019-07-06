@@ -7,13 +7,7 @@ router.use("/api", apiRoutes);
 
 // =========== SEND REACT PRODUCTION BUILD ====================
 router.get("*", (req, res) => {
-    if (process.env.NODE_ENV === "production") {
-        res.sendFile(path.join(__dirname, "../client/build/index.html"));
-    }
-    else{ 
-        console.log("Attempted to send Production build.")
-        res.status(400);
-    }
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 module.exports = router;

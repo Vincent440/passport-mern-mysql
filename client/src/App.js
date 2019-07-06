@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Login from "./pages/Login";
 import TopNav from "./components/TopNav";
@@ -11,15 +11,10 @@ class App extends React.Component {
     loggedIn:false
   };
   
-  setAppUserStatus = user => {
+  setAppUserStatus = (user) => {
     this.setState({
-        user: user
+      user,loggedIn: true
     });
-  };
-  updateAppLoginState = boolean => {
-      this.setState({
-          loggedIn: boolean
-      });
   };
   
   render() {
@@ -28,8 +23,10 @@ class App extends React.Component {
         <Container fluid>
           <TopNav />
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/welcome" component={Dashboard} />
+          <Route exact path="/" render={() => (
+                this.state.loggedIn ? (<Dashboard />) : (<Redirect updateLogin={()=>this.setAppUserStatus} to="/login" />)
+            )} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </Container>
       </Router>

@@ -9,7 +9,9 @@ import API from "../utils/API";
 
 class Login extends React.Component {
     state = {
-        redirectToReferrer: false
+        redirectToReferrer: false,
+        username:"",
+        password:""
     }
     componentDidMount() {
         this.checkLoginStatus();
@@ -20,11 +22,22 @@ class Login extends React.Component {
             console.log(res)
         });
     }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.postLogin({username:this.state.username,password:this.state.password});
+    }
     postLogin = (userData) => {
+        console.log("Posting Login:"+userData);
         API.postUserLogin(userData).then(res=>{
             console.log(res)
         });
     }
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+    };
 
     render() {
         // const { redirectToReferrer } = this.state
@@ -34,22 +47,22 @@ class Login extends React.Component {
         // }
 
         return (
-            <Row>
-                <Col>
-                    <Form>
-                        <Form.Row>
+            <Row className="justify-content-center">
+                <Col xs="8">
+                    <Form onSubmit={(e)=>this.handleSubmit(e)} className="text-center border">
+                        <Form.Row className="justify-content-center">
                             <Form.Group controlId="loginUsername">
-                                <Form.Label>Username</Form.Label>
-                                <Form.Control autoComplete="username" type="text" name="username" placeholder="Username" />
+                                <Form.Label>Username: {this.state.username}</Form.Label>
+                                <Form.Control onChange={this.handleInputChange} autoComplete="username" type="text" name="username" placeholder="Username" />
                             </Form.Group>  
                         </Form.Row>
-                        <Form.Row>
+                        <Form.Row className="justify-content-center">
                             <Form.Group controlId="loginPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control autoComplete="current-password" type="password" name="password" placeholder="Password" />
+                                <Form.Control onChange={this.handleInputChange} autoComplete="current-password" type="password" name="password" placeholder="Password" />
                             </Form.Group>
                         </Form.Row>
-                        <Button variant="primary" onClick={()=>this.postLogin}>Login</Button>
+                        <Button type="submit" size="block" variant="primary">Login</Button>
                     </Form>
                 </Col>
             </Row>
