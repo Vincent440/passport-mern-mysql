@@ -4,6 +4,7 @@ React app with a node express server to log the user in using passport connected
 
 When I have time I will add more comments to the code along with post this repo as an example for future Passport, passport-local, React app developers. 
 
+__App heroku hosted application View here: [Passport-mern](https://passport-mern.herokuapp.com/)__
 ---
 
 ### Getting Started
