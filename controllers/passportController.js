@@ -23,7 +23,7 @@ module.exports = function(passport) {
     passport.use(new LocalStrategy(
         { passReqToCallback: true },function(req, username, password, done) {
 
-        if(!req.user) {
+        if(!req.user && (!username === "" || password.length >= 6)) {
 
             // callback with username and password from client
             db.User.getUserByUsernameWithPassword(username,function(err, user){
@@ -38,7 +38,7 @@ module.exports = function(passport) {
                     console.log(user);
                     bcrypt.compare(password,user.password,(err,result)=>{
                         if (result) {
-                            console.log("Successful passport-local Strategy log in");
+                            console.log(`Successful login\n ...\n${username} is Logged In!`);
                             delete user.password;
                             done(null,user);
                         }   else {
@@ -49,8 +49,11 @@ module.exports = function(passport) {
             });
 
         }
-        else {
+        else if(req.user){
             done(null,req.user);
+        }
+        else {
+            return done(null,false);
         }
 
     }));

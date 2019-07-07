@@ -7,6 +7,7 @@ router.use("/api", apiRoutes);
 
 // =========== SEND REACT PRODUCTION BUILD ====================
 router.get("*", (req, res) => {
+    console.log(req.isAuthenticated());
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 

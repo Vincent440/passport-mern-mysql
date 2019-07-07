@@ -9,7 +9,7 @@ router.route("/").post(// Using local strategy to redirect back to the signin pa
     function(req, res) {
       console.log("req.session: "+ req.session);
       console.log("req.sessionID: "+ req.sessionID);
-      res.status(200).json({ user: req.user, loggedIn: req.isAuthenticated(),session: req.session });
+      res.status(200).json({ user: req.user, loggedIn: req.isAuthenticated() });
 });
 
 // '/api/login/status' route
