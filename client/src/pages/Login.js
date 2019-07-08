@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+// import {Redirect} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -12,6 +12,9 @@ class Login extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
       this.state = { username: props.user.username||"", password:"", loggedIn: props.loggedIn || false }
     };
+    componentDidMount(){
+        this.props.checkIfLoggedIn();
+    }
     isValidInput = () =>{
         if (this.state.username.length < 4 || this.state.password.length < 6){
             return false;
@@ -28,17 +31,15 @@ class Login extends React.Component {
     }
     handleInputChange = event => {
         const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
+        this.setState({ [name] : value });
     }
-    checkLogin = () => {
-        if(this.state.loggedIn === true) {
-         return <Redirect to="/" />;
-        }
-    }
+    // checkLogin = () => {
+    //     if(this.state.loggedIn === true) {
+    //      return <Redirect to="/" />;
+    //     }
+    // }
     render() {
-        this.checkLogin();
+        // this.checkLogin();
         return  (
             <Row className="justify-content-center">
                 <Col xs="10">
