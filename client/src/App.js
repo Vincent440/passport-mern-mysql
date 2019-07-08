@@ -15,21 +15,33 @@ class App extends React.Component {
     constructor(props) {
       super(props);
       this.setAppLogin.bind(this);
+      this.postLogin.bind(this);
       this.state = {
-      user: {},
+      user: props.user || {},
       loggedIn:false
     }
   };
-  componentDidMount(){
-    API.getLoginStatus().then(res=>this.setAppLogin({user:res.user,loggedIn:res.loggedIn}));
-  }
-  setAppLogin = (userObject,loginBoolean) => {
+  setAppLogin = () => {
     this.setState({
-      user:userObject,loggedIn:loginBoolean
+      user:{},loggedIn:false
     });
   }
+  setAppLogout = () =>{
+    API.getLoggedOut().then(this.setAppLogin)
+  }
+  postLogin = (userData, done) => {
+    if (userData) {
+      console.log(userData);
+      API.postUserLogin(userData).then(res=>{
+        console.log(res);
+        this.setState(()=>{
+          return {user:res.user,loggedIn:res.loggedIn}
+        });
+      });
+    }
+}
   render() {
-    const {user,loggedIn} = this.state;
+    let {user,loggedIn} = this.state;
     return (
       <Router>
         <Container className="m-0 px-0" fluid>
@@ -45,14 +57,14 @@ class App extends React.Component {
           <Switch>            
             <Route path="/" exact strict render={props => ( (loggedIn) ? (<Dashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
             <Route path="/about" exact strict render={props => (loggedIn ? (<About loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>)) } />
-            <Route path="/login" exact strict render={ props=> (<Login {...props} user={user} setAppLogin={this.setAppLogin} />) }/>
-            <Route path="/logout" exact strict render={ props=>(loggedIn ? (<Logout setAppLogin={this.setAppLogin} user={user} />) : (<Redirect to="/login"/>))} />
+            <Route path="/login" exact strict render={ props=> (!loggedIn ? (<Login {...props} user={user} loggedIn={loggedIn} postLogin={this.postLogin} />):(<Redirect to="/"/>)) }/>
+            <Route path="/logout" exact strict render={ props=>(loggedIn ? (<Logout setAppLogout={this.setAppLogout} user={user} />) : (<Redirect to="/login"/>))} />
             <Route component={NoMatch} />
           </Switch>
         </Container>
       </Router>
     );
-  }
+  } 
 }
 
 export default App;

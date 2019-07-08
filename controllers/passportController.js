@@ -1,30 +1,23 @@
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const LocalStrategy   = require('passport-local').Strategy;
-
 module.exports = function(passport) {
-
     //  ======================== Passport Session Setup ============================
     // required for persistent login sessions passport needs ability to serialize and unserialize users out of session
-
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.user_id);
     });
-
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
         db.User.getUserById(id, (err,data) => {
             done(err,data);
         });
     });
-
-    //  ===================  LOCAL Strategy  ============================
     passport.use(new LocalStrategy(
-        { passReqToCallback: true },function(req, username, password, done) {
-
+        { passReqToCallback: true },
+        function(req, username, password, done) {
         if(!req.user && (!username === "" || password.length >= 6)) {
-
             // callback with username and password from client
             db.User.getUserByUsernameWithPassword(username,function(err, user){
                 if (err){
@@ -47,7 +40,6 @@ module.exports = function(passport) {
                     });
                 }
             });
-
         }
         else if(req.user){
             done(null,req.user);
@@ -55,7 +47,5 @@ module.exports = function(passport) {
         else {
             return done(null,false);
         }
-
     }));
-
 };

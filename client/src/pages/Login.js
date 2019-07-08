@@ -4,18 +4,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
-import API from "../utils/API";
 
 class Login extends React.Component {
     constructor(props) {
-        super(props);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {
-            username: props.user.username||"",
-            password:"",
-            loggedIn: props.loggedIn || false
-        };
+     super(props);
+      this.handleInputChange = this.handleInputChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.state = { username: props.user.username||"", password:"", loggedIn: props.loggedIn || false }
     };
     isValidInput = () =>{
         if (this.state.username.length < 4 || this.state.password.length < 6){
@@ -24,33 +19,19 @@ class Login extends React.Component {
         else{
             return true;
         }
-    };
+    }
     handleSubmit = (event) => {
         event.preventDefault();
         if(this.isValidInput()){
-            this.postLogin({username:this.state.username,password:this.state.password});
+            this.props.postLogin({username:this.state.username,password:this.state.password});
         }
-    };
-    postLogin = (userData) => {
-        if(userData)    {
-            console.log(userData);
-            API.postUserLogin(userData).then(res=>{
-                console.log(res);
-               this.props.setAppLogin(res.user,res.loggedIn);
-               this.setState({
-                    username:"",
-                    password:"",
-                    loggedIn:res.loggedIn
-                },()=>this.props.history.push("/"));
-            });
-        }
-    };
+    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
           [name]: value
         });
-    };
+    }
     checkLogin = () => {
         if(this.state.loggedIn === true) {
          return <Redirect to="/" />;
@@ -81,6 +62,6 @@ class Login extends React.Component {
             </Row>
         );
     };
-};
+}
 
 export default Login;
