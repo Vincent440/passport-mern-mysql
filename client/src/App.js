@@ -45,14 +45,14 @@ class App extends React.Component {
     return (
       <Router>
         <Container className="m-0 px-0" fluid>
-        <Navbar className="p-4 mx-0" bg="dark" variant="dark">
+        <Navbar className="px-4 p-2 mx-0" bg="dark" variant="dark">
           <Navbar.Brand className='text-capitalize'>Mern Passport MySQL App Welcome: {user.username? (user.username) : ("User ")  }</Navbar.Brand>
           <Nav className="px-2">
-            <Link to="/" className="px-2">Dashboard</Link>
-            <Link to="/about" className="px-2">About</Link>
+            <Link to="/" className="nav-link">Dashboard</Link>
+            <Link to="/about" className="nav-link">About</Link>
             {LoginLogoutLink(loggedIn)}
           </Nav>
-          <h4 className="text-white text-capitalize">{loggedIn? `Username: ${user.username} Access-Lvl: ${user.type}` :"Please Log In."}</h4>
+          <h6 className="text-white text-capitalize">{loggedIn? `Username: ${user.username} Access-Lvl: ${user.type}` :"Please Log In."}</h6>
         </Navbar>
           <Switch>            
             <Route path="/" exact strict render={props => ( (loggedIn) ? (<Dashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
