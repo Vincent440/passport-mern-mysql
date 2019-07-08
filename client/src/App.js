@@ -39,7 +39,7 @@ class App extends React.Component {
         });
       });
     }
-}
+  }
   render() {
     let {user,loggedIn} = this.state;
     return (

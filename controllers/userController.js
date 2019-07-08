@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 module.exports = {
-
     createNewUser:(req, res)=> {
         console.log(req.isAuthenticated());
         const userData = req.body.vals// grab onto the new user array of values
@@ -12,7 +11,7 @@ module.exports = {
             userData[1] = hash;//replace plain text password with hash
             console.log(userData);
             db.User.insertOne(userData, (result) => {// save new user with hashed password to database
-                res.json({ id: result.insertId });
+                res.status(200).json({ id: result.insertId });
             });
         });
     },
@@ -44,5 +43,4 @@ module.exports = {
             res.status(200).json(data);
         });
     }
-    
 };
