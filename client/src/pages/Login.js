@@ -16,7 +16,7 @@ class Login extends React.Component {
         this.props.checkIfLoggedIn();
     }
     isValidInput = () =>{
-        if (this.state.username.length < 4 || this.state.password.length < 6){
+        if (this.state.username.length < 4 || this.state.password.length < 5){
             return false;
         }
         else{

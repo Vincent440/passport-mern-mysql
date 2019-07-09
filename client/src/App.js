@@ -1,9 +1,7 @@
 import React from "react";
 // import { withRouter } from "react-router";
-import { BrowserRouter as Router, Route, Switch, Redirect,Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import API from "./utils/API";
 import Dashboard from "./pages/Dashboard";
 import ManagerDashboard from "./pages/ManagerDashboard";
@@ -12,8 +10,12 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import Logout from "./pages/Logout";
 import NoMatch from "./pages/NoMatch";
-import LoginLogoutLink from "./components/LoginLogoutLink";
-import UserRoute from "./components/UserRoute";
+// import UserRoute from "./components/UserRoute";
+import PrivateRoute from "./components/PrivateRoute";
+import TopNavbar from "./components/TopNavbar";
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={(props) => ( props.loggedIn === true  ? <Component {...props} />  : <Redirect to='/login' />)} />
+// );
 
 class App extends React.Component {
     constructor(props) {
@@ -50,33 +52,23 @@ class App extends React.Component {
   }
   checkIfAppIsLoggedIn = () => {
     API.getLoginStatus().then(res=>{
-      this.setState({user:res.user,loggedIn:res.loggedIn});
+      this.setState({user:res.user, loggedIn:res.loggedIn});
     })
   }
   checkServerIfLoggedIn = () => {
-    API.getLoginStatus().then(res=>res.loggedIn);
+    API.getLoginStatus().then(res => res.loggedIn);
   }
   // Considering importing this and placing around an exported version of the navbar.
-//import withRouter from "react-router";
+  //import withRouter from "react-router";
   render() {
     let {user,loggedIn} = this.state;
     return (
       <Router>
         <Container className="m-0 px-0" fluid>
-        <Navbar className="px-4 p-2 mx-0" bg="dark" variant="dark">
-          <Navbar.Brand className='text-capitalize'>Mern Passport MySQL App Welcome: {user.username? (user.username) : ("User ")  }</Navbar.Brand>
-          <Nav className="px-2">
-            <Link to="/" className="nav-link">Dashboard</Link>
-            <Link to="/manager" className="nav-link">Manager Dashboard</Link>
-            <Link to="/admin" className="nav-link">Admin Dashboard</Link>
-            <Link to="/about" className="nav-link">About</Link>
-            <LoginLogoutLink loggedIn={loggedIn} />
-          </Nav>
-          <h6 className="text-white text-capitalize">{loggedIn? `Username: ${user.username} Access-Lvl: ${user.type}` :"Please Log In."}</h6>
-        </Navbar>
+          <TopNavbar user={user} loggedIn={loggedIn} />
           <Switch>
             <Route path="/" exact strict render={props => ( (loggedIn) ? (<Dashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
-            <UserRoute path="/about" exact strict component={About} checkServerIfLoggedIn={this.checkServerIfLoggedIn} loggedIn={loggedIn}/>
+            <PrivateRoute path="/about" exact strict component={About} checkServerIfLoggedIn={this.checkServerIfLoggedIn} loggedIn={loggedIn}/>
             <Route path="/manager" exact strict render={props => ( (loggedIn) ? (<ManagerDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
             <Route path="/admin" exact strict render={props => ( (loggedIn) ? (<AdminDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
             {/* <Route path="/about" exact strict render={props => (loggedIn ? (<About loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>)) } /> */}

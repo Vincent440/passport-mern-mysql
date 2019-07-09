@@ -17,7 +17,7 @@ module.exports = (passport) => {
     passport.use(new LocalStrategy({ passReqToCallback: true },
         (req, username, password, done) => {
         console.log(`Pass port use local-strategy sign in attempt for: ${username}`);
-        if(!req.user && (!username === "" || password.length >= 6)) {// callback with username and password from client must match basic requirements before even being compared in DB
+        if(!req.user && (!username === "" || password.length >= 5)) {// callback with username and password from client must match basic requirements before even being compared in DB
 
             console.log("attempting to get user from DB");
             db.User.getUserByUsernameWithPassword(username,(err, user)=>{
