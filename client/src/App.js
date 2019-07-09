@@ -1,5 +1,4 @@
 import React from "react";
-// import { withRouter } from "react-router";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import API from "./utils/API";
@@ -10,11 +9,20 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import Logout from "./pages/Logout";
 import NoMatch from "./pages/NoMatch";
-// import PrivateRoute from "./components/PrivateRoute";
-import TopNavbar from "./components/TopNavbar";
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => ( props.loggedIn === true  ? <Component {...props} />  : <Redirect to='/login' />)} />
-);
+import TopNavbar from "./components/TopNavbar";//WrappedWithRouter
+
+class PrivateRoute extends React.Component {
+  render() {
+     const {component: Component,loggedIn, ...rest} = this.props;
+     const renderRoute = props => {
+         if (loggedIn) {
+            return ( <Component {...props} /> );
+         }
+         return ( <Redirect to="/login" /> );
+     }
+     return ( <Route {...rest} render={renderRoute}/> );
+  }
+}
 
 class App extends React.Component {
     constructor(props) {
@@ -23,7 +31,7 @@ class App extends React.Component {
       this.postLogin.bind(this);
       this.checkIfAppIsLoggedIn.bind(this);
       this.state = {
-      user: props.user || {},
+      user: props.user || {username:"user"},
       loggedIn:false
     }
   };
@@ -65,11 +73,14 @@ class App extends React.Component {
           <TopNavbar user={user} loggedIn={loggedIn} />
           <Switch>
             <Route path="/" exact strict render={props => ( (loggedIn) ? (<Dashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
-            <PrivateRoute path="/about" exact strict component={About} loggedIn={loggedIn} />
+            <PrivateRoute path="/about" exact strict component={About} loggedIn={loggedIn} user={user} />
             <Route path="/manager" exact strict render={props => ( (loggedIn) ? (<ManagerDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
             <Route path="/admin" exact strict render={props => ( (loggedIn) ? (<AdminDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
             {/* <Route path="/about" exact strict render={props => (loggedIn ? (<About loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>)) } /> */}
-            <Route path="/login" exact strict render={ props=> (!loggedIn ? (<Login {...props} user={user} checkIfLoggedIn={this.checkIfAppIsLoggedIn} loggedIn={loggedIn} postLogin={this.postLogin} />):(<Redirect to="/"/>)) }/>
+            <Route path="/login" exact strict render={ props=> (
+              !loggedIn ? ( <Login {...props} user={user} checkIfLoggedIn={this.checkIfAppIsLoggedIn} loggedIn={loggedIn} postLogin={this.postLogin} />) : ( <Redirect to="/" />)
+              )
+            }/>
             <Route path="/logout" exact strict render={ props=>(loggedIn ? (<Logout setAppLogout={this.setAppLogout} user={user} />) : (<Redirect to="/login"/>))} />
             <Route component={NoMatch} />
           </Switch>

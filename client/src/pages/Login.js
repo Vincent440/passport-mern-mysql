@@ -10,10 +10,17 @@ class Login extends React.Component {
      super(props);
       this.handleInputChange = this.handleInputChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.state = { username: props.user.username||"", password:"", loggedIn: props.loggedIn || false }
+      this.state = {
+            username: props.user.username|| "",
+            password:""
+        }
     };
     componentDidMount(){
         this.props.checkIfLoggedIn();
+    }
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name] : value });
     }
     isValidInput = () =>{
         if (this.state.username.length < 4 || this.state.password.length < 5){
@@ -29,17 +36,7 @@ class Login extends React.Component {
             this.props.postLogin({username:this.state.username,password:this.state.password});
         }
     }
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({ [name] : value });
-    }
-    // checkLogin = () => {
-    //     if(this.state.loggedIn === true) {
-    //      return <Redirect to="/" />;
-    //     }
-    // }
     render() {
-        // this.checkLogin();
         return  (
             <Row className="justify-content-center">
                 <Col xs="10">
@@ -64,5 +61,4 @@ class Login extends React.Component {
         );
     };
 }
-
 export default Login;

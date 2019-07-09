@@ -2,7 +2,7 @@ import React from "react";
 
 class Logout extends React.Component {
     componentDidMount(){
-      setTimeout(()=>this.callAppLogOut(),4500);
+      setTimeout(()=>this.callAppLogOut(),4000);
     }
     callAppLogOut=()=>{
       this.props.setAppLogout();

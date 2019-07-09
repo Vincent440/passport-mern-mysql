@@ -1,7 +1,17 @@
 import React from "react";
 import { BrowserRouter as Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => ( props.loggedIn === true ? <Component {...props} />  : <Redirect to='/login' />)} />
-);
+class PrivateRoute extends React.Component {
+    render() {
+       const {component: Component,loggedIn, ...rest} = this.props;
+       const renderRoute = props => {
+           if (loggedIn) {
+              return ( <Component {...props} /> );
+           }
+           return ( <Redirect to="/login" /> );
+       }
+       return ( <Route {...rest} render={renderRoute}/> );
+    }
+  }
+
 export default PrivateRoute;
