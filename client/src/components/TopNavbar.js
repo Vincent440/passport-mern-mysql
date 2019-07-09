@@ -21,6 +21,6 @@ class TopNavbar extends React.Component {
       </Navbar>
     );
   }
-};
+}
 
 export default withRouter(TopNavbar);

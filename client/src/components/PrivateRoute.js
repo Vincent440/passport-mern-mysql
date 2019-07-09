@@ -5,7 +5,7 @@ class PrivateRoute extends React.Component {
     render() {
        const {component: Component,loggedIn, ...rest} = this.props;
        const renderRoute = props => {
-           if (loggedIn) {
+           if (loggedIn===true) {
               return ( <Component {...props} /> );
            }
            return ( <Redirect to="/login" /> );

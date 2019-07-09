@@ -10,12 +10,13 @@ import About from "./pages/About";
 import Logout from "./pages/Logout";
 import NoMatch from "./pages/NoMatch";
 import TopNavbar from "./components/TopNavbar";//WrappedWithRouter
+// import PrivateRoute from "./components/PrivateRoute";
 
 class PrivateRoute extends React.Component {
   render() {
      const {component: Component,loggedIn, ...rest} = this.props;
      const renderRoute = props => {
-         if (loggedIn) {
+         if (loggedIn === true) {
             return ( <Component {...props} /> );
          }
          return ( <Redirect to="/login" /> );
@@ -72,10 +73,10 @@ class App extends React.Component {
         <Container className="m-0 px-0" fluid>
           <TopNavbar user={user} loggedIn={loggedIn} />
           <Switch>
-            <Route path="/" exact strict render={props => ( (loggedIn) ? (<Dashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
+            <PrivateRoute path="/" exact strict component={Dashboard} loggedIn={loggedIn} user={user} />
             <PrivateRoute path="/about" exact strict component={About} loggedIn={loggedIn} user={user} />
-            <Route path="/manager" exact strict render={props => ( (loggedIn) ? (<ManagerDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
-            <Route path="/admin" exact strict render={props => ( (loggedIn) ? (<AdminDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
+            <PrivateRoute path="/manager" exact strict component={ManagerDashboard} loggedIn={loggedIn} user={user} />
+            <PrivateRoute path="/admin" exact strict component={AdminDashboard} loggedIn={loggedIn} user={user} />
             {/* <Route path="/about" exact strict render={props => (loggedIn ? (<About loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>)) } /> */}
             <Route path="/login" exact strict render={ props=> (
               !loggedIn ? ( <Login {...props} user={user} checkIfLoggedIn={this.checkIfAppIsLoggedIn} loggedIn={loggedIn} postLogin={this.postLogin} />) : ( <Redirect to="/" />)

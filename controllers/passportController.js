@@ -33,21 +33,28 @@ module.exports = (passport) => {
                     //if user found, compare password against db password and return true or false if it matches
                     console.log(user);
                     bcrypt.compare(password,user.password,(err,result)=>{
-                        if (result) {
+                        if(err){
+                            console.log("error in bcrypt compare");
+                            done(err);
+                        }
+                        else if (result) {
                             console.log(`Successful login for User: ${user.username} ID: ${user.user_id} Type:${user.type} type-ID:${user.access_id} removing pw from userObj and attaching to future requests`);
                             delete user.password;
                             done(null,user);
                         }   else {
-                            done(err,false);
+                            console.log("Passwords did not match. Failed log in");
+                            done(null,false);
                         }
                     });
                 }
             });
         }
         else if(req.user){
+            console.log("User attempted to log in while already logged in.");
             done(null,req.user);
         }
         else {
+            console.log("Login attempt did not meet username and password requirements.")
             return done(null,false);
         }
     }));
