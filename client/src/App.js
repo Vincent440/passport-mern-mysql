@@ -10,12 +10,11 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import Logout from "./pages/Logout";
 import NoMatch from "./pages/NoMatch";
-// import UserRoute from "./components/UserRoute";
-import PrivateRoute from "./components/PrivateRoute";
+// import PrivateRoute from "./components/PrivateRoute";
 import TopNavbar from "./components/TopNavbar";
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={(props) => ( props.loggedIn === true  ? <Component {...props} />  : <Redirect to='/login' />)} />
-// );
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => ( props.loggedIn === true  ? <Component {...props} />  : <Redirect to='/login' />)} />
+);
 
 class App extends React.Component {
     constructor(props) {
@@ -58,8 +57,6 @@ class App extends React.Component {
   checkServerIfLoggedIn = () => {
     API.getLoginStatus().then(res => res.loggedIn);
   }
-  // Considering importing this and placing around an exported version of the navbar.
-  //import withRouter from "react-router";
   render() {
     let {user,loggedIn} = this.state;
     return (
@@ -68,7 +65,7 @@ class App extends React.Component {
           <TopNavbar user={user} loggedIn={loggedIn} />
           <Switch>
             <Route path="/" exact strict render={props => ( (loggedIn) ? (<Dashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
-            <PrivateRoute path="/about" exact strict component={About} checkServerIfLoggedIn={this.checkServerIfLoggedIn} loggedIn={loggedIn}/>
+            <PrivateRoute path="/about" exact strict component={About} loggedIn={loggedIn} />
             <Route path="/manager" exact strict render={props => ( (loggedIn) ? (<ManagerDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
             <Route path="/admin" exact strict render={props => ( (loggedIn) ? (<AdminDashboard loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>) ) } />
             {/* <Route path="/about" exact strict render={props => (loggedIn ? (<About loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>)) } /> */}
@@ -81,5 +78,4 @@ class App extends React.Component {
     );
   } 
 }
-
 export default App;

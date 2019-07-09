@@ -3,11 +3,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {Link} from 'react-router-dom';
 import LoginLogoutLink from './LoginLogoutLink';
+import { withRouter } from "react-router";
+
 class TopNavbar extends React.Component {
   render () {
     return (
       <Navbar className="px-4 p-2 mx-0" bg="dark" variant="dark">
-        <Navbar.Brand className='text-capitalize'>Mern Passport MySQL App Welcome: {this.props.user.username ? (this.props.user.username) : ('User ') }</Navbar.Brand>
+        <Navbar.Brand className='text-capitalize'>Mern Passport MySQL App Welcome: {this.props.user.username}</Navbar.Brand>
         <Nav className="px-2">
           <Link to="/" className="nav-link">Dashboard</Link>
           <Link to="/manager" className="nav-link">Manager Dashboard</Link>
@@ -20,4 +22,5 @@ class TopNavbar extends React.Component {
     );
   }
 };
-export default TopNavbar;
+
+export default withRouter(TopNavbar);
