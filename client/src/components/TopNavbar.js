@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 class TopNavbar extends React.Component {
   render () {
     return (
-      <Navbar className="px-4 p-2 mx-0" bg="dark" variant="dark">
+      <Navbar className="mx-0" bg="dark" variant="dark">
         <Navbar.Brand className='text-capitalize'>Mern Passport MySQL App Welcome: {this.props.user.username}</Navbar.Brand>
         <Nav className="px-2">
           <Link to="/" className="nav-link">Dashboard</Link>

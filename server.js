@@ -4,8 +4,8 @@ const express = require("express");
 const passport = require("passport");
 require('./controllers/passportController')(passport); // pass passport for configuration
 const app = express();
-const bodyParser = require('body-parser');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const routes = require("./routes");
 const PORT = process.env.PORT;// Stored in .env File along with DB Config.

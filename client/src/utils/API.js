@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default {
-
   getLoginStatus: async () => {
     try {
       const res = await axios.get('/api/login/status');
@@ -19,7 +18,7 @@ export default {
     }
     catch (err) {
       console.log("serverside error thrown failed log in attempt");
-      return done(true,null);
+      return done(true,false);
     }
   },
   getLoggedOut: async () => {
@@ -32,5 +31,4 @@ export default {
       return console.log(err);
     }
   }
-
 }

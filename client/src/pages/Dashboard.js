@@ -1,6 +1,9 @@
 import React from "react";
 
 class Dashboard extends React.Component {
+    componentDidMount(){
+        console.log(this.props);
+      }
     render() {
         return(
             <div className="text-center">
