@@ -9,7 +9,6 @@ const options = {
 }
 const connection = process.env.JAWSDB_URL ?
 (mysql.createConnection(process.env.JAWSDB_URL)) : (mysql.createConnection(options));
-
 connection.connect();
 
 module.exports = connection;
