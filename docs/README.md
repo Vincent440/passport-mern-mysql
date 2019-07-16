@@ -1,10 +1,10 @@
 # M.E.R.N Passport MySQL
 
-React app with a node express server to log the user in using passport connected to mysql database
+Node.js using the Express framework with a React client application using MySQL to log the user in with passport with the passport-local strategy using a username and password. 
 
-When I have time I will add more comments to the code along with post this repo as an example for future Passport, passport-local, React app developers. 
+My intentions creating this repository was to learn passport, as well as create a good amount of _example code for others to help them create a successful user login system._
 
-__App heroku hosted application View here: [Passport-mern](https://passport-mern.herokuapp.com/)__
+__App Heroku hosted application View here: [Passport-mern](https://passport-mern.Herokuapp.com/)__
 ---
 
 ### Getting Started
@@ -54,6 +54,34 @@ passport-mern-sql/config/[schema.sql](../config/schema.sql)
 passport-mern-sql/config/[seeds.sql](../config/seeds.sql)
 
 Then you should be all set to start making changes to the application. 
+
+# Hosting the application.
+
+In order to deploy this application:
+
+you will need to ensure have a mysql database attached to your server. The way this application is set up the `.env` variables will need to match how the local database `.env` variables are set up. 
+
+I used Heroku to deploy my application.
+to do the same you will need to:
+* Have a Heroku account or create one. 
+* **assuming you have an account.** log in to the Heroku website.
+* Create a new app and name it whatever you would like to match your applications initial Heroku url. 
+* Open `your application name` from the dashboard on Heroku's website and select `Deploy`
+* Select `Github` and login to Github to connect your account to Heroku
+* After succesfully connecting to Github connect the app to the github repository
+  * Select the Github account you are using and search for the repository using the search box provided.
+  * If you searched successfully you will see the repository you are looking for and have a *Connect* button.
+  * After pressing *Connect* you have the option to either select a branch and setup automatic deployments or manually deploy whenever you want to test your latest build in a branch. up to you. 
+---
+### Issues || Questions?
+* **Question?** Open a **[Ticket here](https://github.com/Vincent440/passport-mern-sql/issues/new)**
+
+* **Issue?** Open a **[Ticket here](https://github.com/Vincent440/passport-mern-sql/issues/new)**
+* Please leave a brief description
+* Details surrounding the problem
+* Attempts you took to fix it.
+* OS you are using.
+
 
 ---
 ## Contributers

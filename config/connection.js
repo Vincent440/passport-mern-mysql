@@ -1,6 +1,5 @@
 const mysql = require("mysql2");
 
-
 const connection = mysql.createConnection({
     host: process.env.DB_HOST, // Host name for database connection:
     port: process.env.DB_PORT,// Port number for database connection:
