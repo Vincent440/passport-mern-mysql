@@ -84,11 +84,10 @@ class App extends React.Component {
           <TopNavbar user={user} loggedIn={loggedIn} setAppLogout={this.setAppLogout} />
           <Container className="mx-0" fluid>
             <Switch>
-              <PrivateRoute strict exact path="/" component={Dashboard} loggedIn={loggedIn} user={user} />
-              <PrivateRoute strict exact path="/about" component={About} loggedIn={loggedIn} user={user} />
-              <PrivateRoute strict exact path="/manager" component={ManagerDashboard} loggedIn={loggedIn} user={user} />
-              <PrivateRoute strict exact path="/admin" component={AdminDashboard} loggedIn={loggedIn} user={user} />
-              {/* <Route path="/about" exact strict render={props => (loggedIn ? (<About loggedIn={loggedIn} user={user} />) : (<Redirect to="/login"/>)) } /> */}
+              <PrivateRoute strict exact path="/" aLvl="0" component={Dashboard} loggedIn={loggedIn} user={user} />
+              <PrivateRoute strict exact path="/about" aLvl="0" component={About} loggedIn={loggedIn} user={user} />
+              <PrivateRoute strict exact path="/manager" aLvl="0" component={ManagerDashboard} loggedIn={loggedIn} user={user} />
+              <PrivateRoute strict exact path="/admin" aLvl="0" component={AdminDashboard} loggedIn={loggedIn} user={user} />
               <Route
                 path="/login"
                 exact
