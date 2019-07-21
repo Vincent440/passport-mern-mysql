@@ -41,7 +41,7 @@ class Login extends React.Component {
             <Row className="justify-content-center">
                 <Col xs="10">
                     <h1 className="text-center display-3 text-capitalize">Welcome { this.state.username ? this.state.username : "User" }</h1>
-                    <Form onSubmit={(e)=>this.handleSubmit(e)} className="text-center border p-3">
+                    <Form disabled={!this.isValidInput()} onSubmit={(e)=>this.handleSubmit(e)} className="text-center border p-3">
                         <Form.Row className="justify-content-center">
                             <Form.Group controlId="loginUsername">
                                 <Form.Label>Username</Form.Label>
