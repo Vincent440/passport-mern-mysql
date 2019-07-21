@@ -8,7 +8,13 @@ router.route("/").get((req, res) => {
     if(err) {console.log(err);}
     // cannot access session here
     console.log("\nUser Is now logged out: " + req.isUnauthenticated());
-    res.status(200).json({ user: {}, loggedIn: req.isAuthenticated() });
+    res.status(200).json({
+    user: {
+      access_id: 0,
+      type: "Guest",
+      user_id: 0,
+      username: "guest"
+    }});
   });
   req.logout();
 });
