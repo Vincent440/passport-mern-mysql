@@ -77,10 +77,10 @@ to do the same you will need to:
 * **Question?** Open a **[Ticket here](https://github.com/Vincent440/passport-mern-sql/issues/new)**
 
 * **Issue?** Open a **[Ticket here](https://github.com/Vincent440/passport-mern-sql/issues/new)**
-* Please leave a brief description
-* Details surrounding the problem
-* Attempts you took to fix it.
-* OS you are using.
+  * Please leave a brief description
+  * Details surrounding the problem
+  * Attempts you took to fix it.
+  * OS you are using.
 
 
 ---
