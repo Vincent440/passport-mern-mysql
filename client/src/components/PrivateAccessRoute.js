@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Route, Redirect } from "react-router-dom";
 
-class PrivateRoute extends React.Component {
+class PrivateAccessRoute extends React.Component {
     render() {
        const {component: Component,loggedIn, ...rest} = this.props;
        const renderRoute = props => {
@@ -14,4 +14,4 @@ class PrivateRoute extends React.Component {
     }
   }
 
-export default PrivateRoute;
+export default PrivateAccessRoute;
