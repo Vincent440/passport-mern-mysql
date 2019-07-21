@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 class NavbarButtonsBasedOnLogin extends React.Component {
   render() {
-    if (this.props.loggedIn === true) {
+    if (this.props.user.access_id > 0) {
       return (
         <ButtonGroup size="sm" aria-label="Navbar action buttons" className="p-0">
           <Button disabled variant="outline-light" className="text-capitalize px-1">
