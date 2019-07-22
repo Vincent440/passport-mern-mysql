@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const passport = require("passport");
-require("../../controllers/passportController")(passport);
 
 // '/api/login' route
 router.route("/").post(// Using local strategy to redirect back to the signin page if there is an error

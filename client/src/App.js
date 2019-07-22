@@ -9,37 +9,43 @@ import Login from "./pages/Login";
 import About from "./pages/About";
 import NoMatch from "./pages/NoMatch";
 import TopNavbar from "./components/TopNavbar"; //WrappedWithRouter
-// import {PrivateAccessRoute} from "./components/PrivateAccessRoute";
 import UserContext from "./UserContext";
-
-class PrivateAccessRoute extends React.Component { 
-  render() {
-    const { component: Component, aId, user, ...rest } = this.props;
-
-    const renderRoute = props => {
-      if ( user.access_id >= aId ) {
-        return <Component user={user} {...props} />;
-      }
-      return <Redirect to="/login" />;
-    };
-    return <Route {...rest} render={renderRoute} />;
-  }
-}
+// import PrivateAccessRoute from "./components/PrivateAccessRoute";
+const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
+  <UserContext.Consumer>
+    {({ user }) => (
+      <Route
+        {...rest}
+        render={props =>
+          user.access_id >= aId ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />
+    )}
+  </UserContext.Consumer>
+);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.postUserLogin = userData => {
       if (userData) {
         API.postUserLogin(userData, (err, res) => {
           if (err === true) {
             return console.log("an error occurred failed to log user in.");
-          } 
-          this.setState({user: res.user});
+          }
+          this.setState({ user: res.user });
         });
       }
-    }
+    };
     this.getUserLogout = event => {
       event.preventDefault();
       API.getLoggedOut().then(this.getUserStatus);
@@ -47,7 +53,7 @@ class App extends React.Component {
     this.getUserStatus = () => {
       API.getLoginStatus().then(res => {
         if (res) {
-          this.setState({ user: res.user});
+          this.setState({ user: res.user });
         }
       });
     };
@@ -60,37 +66,41 @@ class App extends React.Component {
       },
       getUserStatus: this.getUserStatus,
       getUserLogout: this.getUserLogout,
-      postUserLogin: this.postUserLogin,
+      postUserLogin: this.postUserLogin
     };
   }
-
   componentDidMount() {
     if (this.state.user.access_id === 0) {
       this.getUserStatus();
     }
   }
-
-
   render() {
     let { user } = this.state;
     return (
       <UserContext.Provider value={this.state}>
-        <Router>
-          <div>
-            <TopNavbar />
+        <Router> 
+          { user.access_id === 0 ? (
+          
             <Container className="mx-0" fluid>
-              <Switch>
-                <PrivateAccessRoute strict exact path="/" aId="1" component={Dashboard} user={user} />
-                <PrivateAccessRoute strict exact path="/about" aId="1" component={About} user={user} />
-                <PrivateAccessRoute strict exact path="/manager" aId="2" component={ManagerDashboard} user={user} />
-                <PrivateAccessRoute strict exact path="/admin" aId="3" component={AdminDashboard} user={user} />
-                <Route strict exact path="/login"
-                  render={props => ( user.access_id === 0 ? <Login {...props} user={user} checkIfLoggedIn={this.getUserStatus} postLogin={this.postUserLogin} /> : <Redirect to="/" />)}
-                />
-                <Route component={NoMatch} />
-              </Switch>
+              <Login />  
+              <Redirect to="/" />
             </Container>
-          </div>
+          ) : 
+          (
+            <div>
+              <TopNavbar />
+              <Container className="mx-0" fluid>
+                <Switch>
+                  <PrivateAccessRoute strict exact path="/" aId="1" component={Dashboard} />
+                  <PrivateAccessRoute strict exact path="/about" aId="1" component={About} />
+                  <PrivateAccessRoute strict exact path="/manager" aId="2" component={ManagerDashboard} />
+                  <PrivateAccessRoute strict exact path="/admin" aId="3" component={AdminDashboard} />
+                  <Route component={NoMatch} />
+                </Switch>
+              </Container>
+            </div>
+          )
+        }
         </Router>
       </UserContext.Provider>
     );
