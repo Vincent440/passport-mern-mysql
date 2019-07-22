@@ -1,6 +1,4 @@
 const router = require("express").Router();
-const passport = require("passport");
-require("../../controllers/passportController")(passport);
 
 // Matches with "api/logout"
 router.route("/").get((req, res) => {
