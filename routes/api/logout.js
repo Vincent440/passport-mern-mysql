@@ -3,9 +3,9 @@ const router = require("express").Router();
 // Matches with "api/logout"
 router.route("/").get((req, res) => {
   req.session.destroy(err => {
-    if(err) {console.log(err);}
-    // cannot access session here
-    console.log("\nUser Is now logged out: " + req.isUnauthenticated());
+    if(err) {
+      console.log(err);
+    }
     res.status(200).json({
     user: {
       access_id: 0,
