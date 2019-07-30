@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   getLoginStatus: async () => {
@@ -14,10 +14,10 @@ export default {
     try {
       const res = await axios.post('/api/login', user);
       // Async function for logging in, setting up callback to return two params, ( error: false if no error, res.data: userData from server )
-      return (res.data.user.username ? (done(false,res.data)) : (done(false,"error logging in")) );
+      return (res.data.user.username ? (done(false,res.data)) : (done(false,'error logging in')) );
     }
     catch (err) {
-      console.log("serverside error thrown failed log in attempt");
+      console.log('serverside error thrown failed log in attempt');
       return done(true,false);
     }
   },
@@ -31,4 +31,4 @@ export default {
       return console.log(err);
     }
   }
-}
+};

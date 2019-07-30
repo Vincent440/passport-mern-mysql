@@ -1,6 +1,6 @@
-import React from "react";
-import RenderIfAId from "../components/RenderIfAId";
-import UserContext from "../UserContext";
+import React from 'react';
+import RenderIfAId from '../components/RenderIfAId';
+import UserContext from '../UserContext';
 
 class Dashboard extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
             <h2>{user.type}</h2>
             <h1 className="text-white">Access Level:</h1>
             <h2>{user.access_id}</h2>
-            <p className="font-weight-bolder text-info">Dashboard that requires User access_id >= 1</p>
+            <p className="font-weight-bolder text-info">Dashboard that requires User access_id &gt;= 1</p>
             <RenderIfAId aId="2">
               <div className="border py-3">
                 <h1>Manager Div header</h1>

@@ -1,9 +1,9 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import UserContext from "../UserContext";
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import UserContext from '../UserContext';
 
 class Login extends React.Component {
   constructor(props) {
@@ -18,24 +18,23 @@ class Login extends React.Component {
         this.context.postUserLogin({ username: this.state.username, password: this.state.password });
       }
     };
+    this.isValidInput = () => {
+      if (this.state.username.length < 4 || this.state.password.length < 5) {
+        return false;
+      } else {
+        return true;
+      }
+    };
     this.state = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     };
   }
-  isValidInput = () => {
-    if (this.state.username.length < 4 || this.state.password.length < 5) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   render() {
     return (
       <Row className="justify-content-center">
         <Col xs="10">
-          <h1 className="text-center display-3 text-capitalize">Welcome {this.state.username ? this.state.username : "User"}</h1>
+          <h1 className="text-center display-3 text-capitalize">Welcome {this.state.username ? this.state.username : 'User'}</h1>
           <Form disabled={!this.isValidInput()} onSubmit={e => this.handleSubmit(e)} className="text-center border p-3">
             <Form.Row className="justify-content-center">
               <Form.Group controlId="loginUsername">

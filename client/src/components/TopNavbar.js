@@ -1,13 +1,13 @@
-import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router";
+import React from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from "react-bootstrap/Button";
-import Badge from "react-bootstrap/Badge";
-import UserContext from "../UserContext";
-import RenderIfAId from "./RenderIfAId";
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+import UserContext from '../UserContext';
+import RenderIfAId from './RenderIfAId';
 
 const TopNavbar = () => (
   <UserContext.Consumer>
@@ -20,12 +20,12 @@ const TopNavbar = () => (
             <NavLink exact to="/" className="nav-link" activeClassName="active">
               Dashboard
             </NavLink>
-            <RenderIfAId aId="2" >
+            <RenderIfAId aId={2} >
               <NavLink exact to="/manager" className="nav-link" activeClassName="active">
                 Manager
               </NavLink>
             </RenderIfAId>
-            <RenderIfAId aId="3" >
+            <RenderIfAId aId={3} >
               <NavLink exact to="/admin" className="nav-link" activeClassName="active">
                 Admin
               </NavLink>
