@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 // Make sure the shape of the default value passed to
 // createContext matches the shape that the consumers expect!
 const UserContext = React.createContext({
   user: {
     access_id: 0,
-    type: "Guest",
+    type: 'Guest',
     user_id: 0,
-    username: "guest"
+    username: 'guest'
   },
   getUserStatus: () => {},
   postUserLogin: () => {},
