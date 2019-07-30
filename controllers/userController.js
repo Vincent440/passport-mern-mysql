@@ -1,5 +1,5 @@
-const db = require("../models/index.js");
-const bcrypt = require("bcrypt");
+const db = require('../models/index.js');
+const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 module.exports = {
