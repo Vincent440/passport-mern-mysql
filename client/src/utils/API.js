@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+/* eslint-disable no-console */
 export default {
   getLoginStatus: async () => {
     try {

@@ -11,29 +11,34 @@ import About from './pages/About';
 import NoMatch from './pages/NoMatch';
 import TopNavbar from './components/TopNavbar'; //WrappedWithRouter
 import UserContext from './UserContext';
-import PrivateAccessRoute from './components/PrivateAccessRoute';
-// const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
-//   <UserContext.Consumer>
-//     {({ user }) => (
-//       <Route
-//         {...rest}
-//         render={props =>
-//           user.access_id >= aId ? (
-//             <Component {...props} />
-//           ) : (
-//             <Redirect
-//               to={{
-//                 pathname: '/',
-//                 state: { from: props.location }
-//               }}
-//             />
-//           )
-//         }
-//       />
-//     )}
-//   </UserContext.Consumer>
-// );
-
+// import {PrivateAccessRoute} from './components/PrivateAccessRoute';
+/* eslint-disable no-console */
+const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
+  <UserContext.Consumer>
+    {({ user }) => (
+      <Route
+        {...rest}
+        render={props =>
+          user.access_id >= aId ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/',
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />
+    )}
+  </UserContext.Consumer>
+);
+PrivateAccessRoute.propTypes = {
+  component : PropTypes.element.isRequired,
+  location : PropTypes.object.isRequired,
+  aId : PropTypes.number.isRequired
+};
 class App extends React.Component {
   constructor(props) {
     super(props);
