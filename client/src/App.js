@@ -8,6 +8,7 @@ import ManagerDashboard from './pages/ManagerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import About from './pages/About';
+import AdminCreateUser from './pages/AdminCreateUser';
 import NoMatch from './pages/NoMatch';
 import TopNavbar from './components/TopNavbar'; //WrappedWithRouter
 import UserContext from './UserContext';
@@ -35,8 +36,8 @@ const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
   </UserContext.Consumer>
 );
 PrivateAccessRoute.propTypes = {
-  component : PropTypes.element.isRequired,
-  location : PropTypes.object.isRequired,
+  component : PropTypes.func.isRequired,
+  location : PropTypes.object,
   aId : PropTypes.number.isRequired
 };
 class App extends React.Component {
@@ -101,6 +102,7 @@ class App extends React.Component {
                     <PrivateAccessRoute strict exact path="/about" aId={1} component={About} />
                     <PrivateAccessRoute strict exact path="/manager" aId={2} component={ManagerDashboard} />
                     <PrivateAccessRoute strict exact path="/admin" aId={3} component={AdminDashboard} />
+                    <PrivateAccessRoute strict exact path="/admin/user/new" aId={3} component={AdminCreateUser} />
                     <Route component={NoMatch} />
                   </Switch>
                 </Container>

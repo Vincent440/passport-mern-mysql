@@ -15,13 +15,13 @@ class Dashboard extends React.Component {
             <h1 className="text-white">Access Level:</h1>
             <h2>{user.access_id}</h2>
             <p className="font-weight-bolder text-info">Dashboard that requires User access_id &gt;= 1</p>
-            <RenderIfAId aId="2">
+            <RenderIfAId aId={2}>
               <div className="border py-3">
                 <h1>Manager Div header</h1>
                 <p>this is a div that should only be viewable by Managers on the dashboard page.</p>
               </div>
             </RenderIfAId>
-            <RenderIfAId aId="3">
+            <RenderIfAId aId={3}>
               <div className="border py-3">
                 <h1>Admin Div header</h1>
                 <p>this is a div that should only be viewable by Admins on the dashboard page.</p>

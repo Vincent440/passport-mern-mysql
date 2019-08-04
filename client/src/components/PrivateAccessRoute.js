@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Route, Redirect } from 'react-router-dom';
 import UserContext from '../UserContext';
-export const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
+const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
   <UserContext.Consumer>
     {({ user }) => (
       <Route
@@ -24,7 +24,8 @@ export const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
   </UserContext.Consumer>
 );
 PrivateAccessRoute.propTypes = {
-  component : PropTypes.element.isRequired,
-  location : PropTypes.object.isRequired,
+  component : PropTypes.func.isRequired,
+  location : PropTypes.object,
   aId : PropTypes.number.isRequired
 };
+export default PrivateAccessRoute;
