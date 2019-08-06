@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import API from './utils/API';
 import Dashboard from './pages/Dashboard';
@@ -8,18 +7,18 @@ import ManagerDashboard from './pages/ManagerDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Login from './pages/Login';
 import About from './pages/About';
-import AdminCreateUser from './pages/AdminCreateUser';
 import NoMatch from './pages/NoMatch';
 import TopNavbar from './components/TopNavbar'; //WrappedWithRouter
 import UserContext from './UserContext';
-// import {PrivateAccessRoute} from './components/PrivateAccessRoute';
 /* eslint-disable no-console */
+// import PrivateAccessRoute from './components/PrivateAccessRoute';
+import PropTypes from 'prop-types';
 const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
   <UserContext.Consumer>
     {({ user }) => (
       <Route
         {...rest}
-        render={props =>
+        render={(props =>
           user.access_id >= aId ? (
             <Component {...props} />
           ) : (
@@ -30,7 +29,7 @@ const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
               }}
             />
           )
-        }
+    )}
       />
     )}
   </UserContext.Consumer>
@@ -102,7 +101,6 @@ class App extends React.Component {
                     <PrivateAccessRoute strict exact path="/about" aId={1} component={About} />
                     <PrivateAccessRoute strict exact path="/manager" aId={2} component={ManagerDashboard} />
                     <PrivateAccessRoute strict exact path="/admin" aId={3} component={AdminDashboard} />
-                    <PrivateAccessRoute strict exact path="/admin/user/new" aId={3} component={AdminCreateUser} />
                     <Route component={NoMatch} />
                   </Switch>
                 </Container>
