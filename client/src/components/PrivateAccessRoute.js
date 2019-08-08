@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Route, Redirect } from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import UserContext from '../UserContext';
 const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
   <UserContext.Consumer>
