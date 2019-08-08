@@ -4,8 +4,7 @@ const passport = require('passport');
 // '/api/login' route
 router.route('/').post(// Using local strategy to redirect back to the signin page if there is an error
   passport.authenticate('local'),(req, res)=> {
-    console.log('req.session: '+ req.session);
-    console.log('req.sessionID: '+ req.sessionID);
+    console.log('req.sessionID:', req.sessionID);
     res.status(200).json({ user: req.user});
   });
 

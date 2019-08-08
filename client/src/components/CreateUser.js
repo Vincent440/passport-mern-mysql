@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-class AdminCreateUser extends React.Component {
+import API from '../utils/API';
+export default class AdminCreateUser extends React.Component {
   constructor(props) {
     super(props);
     this.handleInputChange = event => {
@@ -13,9 +14,13 @@ class AdminCreateUser extends React.Component {
     this.handleSubmit = event => {
       event.preventDefault();
       if (this.isValidInput()) {
+        let { username, password, access_id} = this.state;
         console.log(this.state);
-        console.log("Make api request next here. Then hiding the component removes state & clears form")
-        this.props.toggleComponent();
+        if (username.length >= 4 && password.length >= 5 && (access_id > 0 || access_id <= 3)){
+          console.log("making API post Request");
+          API.postNewUser(this.state).then((res) => console.log(res) );
+        }
+        this.props.toggleCreateComponent();
       }
     };
     this.isValidInput = () => {
@@ -67,4 +72,3 @@ class AdminCreateUser extends React.Component {
     );
   }
 }
-export default AdminCreateUser;

@@ -9,8 +9,8 @@ router.use('/login', loginRoute);
 // logout route for Users
 router.use('/logout', logoutRoute);
 
-// '/api/users' for all routes involving Users Accounts
-router.use('/users', usersRoutes);
+// '/api/user' for all routes involving User Accounts
+router.use('/user', usersRoutes);
 
 // '/api' for any ongoing testing the root of /api route GOOD place for mounting middleware in router.use
 router.get('/', (req, res) => {

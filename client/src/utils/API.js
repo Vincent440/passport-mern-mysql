@@ -24,6 +24,39 @@ export default {
   getLoggedOut: async () => {
     try {
       const res = await axios.get('/api/logout');
+      return res;
+    }
+    catch (err) {
+      return console.log(err);
+    }
+  },
+  postNewUser: async (newUser) => {// Example POST: { "vals": ["test_user", "111111", 1] }
+  console.log(newUser);
+    try {
+      let {username,password,access_id} = newUser;
+      const res = await axios.post('/api/user',{
+        vals:[username,password,access_id]
+      });
+      console.log(res);
+      return res;
+    }
+    catch (err) {
+      return console.log(err);
+    }
+  },
+  getAllUsers: async () => {
+    try {
+      const res = await axios.get('/api/user');
+      console.log(res);
+      return res.data;
+    }
+    catch (err) {
+      return console.log(err);
+    }
+  },
+  deleteUserById: async (id) => {
+    try {
+      const res = await axios.delete(`api/user/${id}`);
       console.log(res);
       return res;
     }
