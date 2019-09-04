@@ -1,4 +1,5 @@
 # M.E.R.N Passport MySQL
+[![Build Status](https://travis-ci.com/Vincent440/passport-mern-mysql.svg?branch=master)](https://travis-ci.com/Vincent440/passport-mern-mysql)
 
 Node.js using the Express framework with a React client application using MySQL to log the user in with passport with the passport-local strategy using a username and password. 
 

@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import UserContext from '../UserContext';
 import CreateUser from '../components/CreateUser';
 import ViewAllUsers from '../components/ViewAllUsers';
+
 export default class AdminDashboard extends React.Component {
   state = {
     createNewUser: false,
