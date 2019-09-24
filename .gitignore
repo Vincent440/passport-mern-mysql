@@ -66,9 +66,5 @@ typings/
 # next.js build output
 .next
 
-# Lock files
-yarn.lock
-package-lock.json
-
 # ignore the client/build folder 
 build/

@@ -6,17 +6,17 @@
   "scripts": {
     "debugger": "concurrently \"node --inspect-brk server.js --ignore 'client/*'\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
+    "client": "cd client && yarn start",
+    "install": "cd client && yarn install",
+    "build": "cd client && yarn build",
+    "heroku-postbuild": "yarn build"
   },
   "devDependencies": {
     "concurrently": "^4.1.2",
-    "eslint": "^5.16.0",
+    "eslint": "^6.4.0",
     "eslint-plugin-react": "^7.14.3",
     "nodemon": "^1.19.2"
   },
