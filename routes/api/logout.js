@@ -1,10 +1,10 @@
-const router = require('express').Router();
+const router = require('express').Router()
 
 // Matches with "api/logout"
 router.route('/').get((req, res) => {
   req.session.destroy(err => {
-    if(err) {
-      console.log(err);
+    if (err) {
+      console.log(err)
     }
     res.status(200).json({
       user: {
@@ -12,9 +12,10 @@ router.route('/').get((req, res) => {
         type: 'Guest',
         user_id: 0,
         username: 'guest'
-      }});
-  });
-  req.logout();
-});
+      }
+    })
+  })
+  req.logout()
+})
 
-module.exports = router;
+module.exports = router

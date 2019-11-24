@@ -1,9 +1,10 @@
 # M.E.R.N Passport MySQL
-[![Build Status](https://travis-ci.com/Vincent440/passport-mern-mysql.svg?branch=master)](https://travis-ci.com/Vincent440/passport-mern-mysql)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Node.js using the Express framework with a React client application using MySQL to log the user in with passport with the passport-local strategy using a username and password. 
 
-My intentions creating this repository was to learn passport, as well as create a good amount of _example code for others to help them create a successful user login system._
+My intentions creating this repository was to learn passport, as well as create a good amount of _example code for others to help them create a successful user login system with mysql express react and node.js._
+Not the Sequelize ORM that would take some modifications to setup.
 
 __App Heroku hosted application View here: [Passport-mern](https://passport-mern.Herokuapp.com/)__
 ---

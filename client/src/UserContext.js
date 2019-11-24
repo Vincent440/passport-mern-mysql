@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 // Make sure the shape of the default value passed to
 // createContext matches the shape that the consumers expect!
@@ -11,6 +11,6 @@ const UserContext = React.createContext({
   },
   getUserStatus: () => {},
   postUserLogin: () => {},
-  getUserLogout: () => {},
-});
-export default UserContext;
+  getUserLogout: () => {}
+})
+export default UserContext
