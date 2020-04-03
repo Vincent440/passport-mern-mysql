@@ -13,11 +13,11 @@ const PORT = process.env.PORT// Stored in .env File along with DB Config.
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
-app.use(cookieParser('mysqlpassportmernreact'))
+app.use(cookieParser(process.env.MY_SECRET))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(session({
-  secret: 'mysqlpassportmernreact',
+  secret: process.env.MY_SECRET,
   store: sessionStore,
   resave: false,
   saveUninitialized: false,

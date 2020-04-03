@@ -1,18 +1,18 @@
 {
   "name": "passportmern",
   "version": "1.0.0",
-  "description": "Passport npm package for log in system for a full stack M.E.R.N applicaion",
+  "description": "Passport yarn package for log in system for a full stack M.E.R.N applicaion",
   "main": "server.js",
   "scripts": {
-    "debugger": "concurrently \"node --inspect-brk server.js --ignore 'client/*'\" \"npm run client\"",
+    "debugger": "concurrently \"node --inspect-brk server.js --ignore 'client/*'\" \"yarn run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "if-env NODE_ENV=production && yarn start:prod || yarn start:dev",
+    "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
-    "client": "cd client && yarn start",
+    "client": "cd client && yarn run start",
     "install": "cd client && yarn install",
-    "build": "cd client && yarn build",
-    "heroku-postbuild": "yarn build"
+    "build": "cd client && yarn run build",
+    "heroku-postbuild": "yarn run build"
   },
   "devDependencies": {
     "concurrently": "^4.1.2",

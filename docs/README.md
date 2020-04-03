@@ -38,7 +38,10 @@ DB_PORT=3306
 DB_USER=userstringhere
 
 # Password for connecting to MySQL database
-DB_PASSWORD=passwordstringhere
+DB_PW=passwordstringhere
+
+# Secret for cookies/sessions 
+MY_SECRET=your-most-secret-of-secrets-here
 
 ```
 
