@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const routes = require('./routes')
 const sessionStore = require('./config/promiseConnection')
-const PORT = process.env.PORT// Stored in .env File along with DB Config.
+const PORT = process.env.PORT
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
