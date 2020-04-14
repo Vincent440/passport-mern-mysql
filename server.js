@@ -6,14 +6,13 @@ require('./config/passportConfig')(passport) // pass passport for configuration
 const app = express()
 const session = require('express-session')
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
 const routes = require('./routes')
 const sessionStore = require('./config/promiseConnection')
 const PORT = process.env.PORT
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
-app.use(cookieParser(process.env.MY_SECRET))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(session({
@@ -28,4 +27,5 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(routes)
+
 app.listen(PORT, () => console.log(`React API server listening on PORT ${PORT}.`))
