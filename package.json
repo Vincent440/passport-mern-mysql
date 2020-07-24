@@ -1,6 +1,6 @@
 {
   "name": "passportmern",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Passport yarn package for log in system for a full stack M.E.R.N applicaion",
   "main": "server.js",
   "scripts": {
@@ -15,9 +15,9 @@
     "heroku-postbuild": "yarn run build"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0",
-    "nodemon": "^2.0.3",
-    "standard": "^14.3.1"
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
+    "standard": "^14.3.4"
   },
   "repository": {
     "type": "git",
