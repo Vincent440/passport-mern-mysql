@@ -24,7 +24,7 @@
     "url": "git+https://github.com/Vincent440/passport-mern-sql"
   },
   "author": "Vincent Shury",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
