@@ -70,11 +70,12 @@ MY_SECRET=your-most-secret-of-secrets-here
 
 ```
 
-* Run npm install commands to pull in the required packages:
+* Using `yarn` to pull in the required packages:
 
 ```bash
-npm install
+yarn install
 ```
+If you do not have `yarn` you could use `npm`, but you'd need to update the scripts in the `package.json` file to reflect the usage of `npm` instead of `yarn`.
 
 * Run the Database schema.sql to set up the database structure.
 
@@ -112,4 +113,4 @@ to do the same you will need to:
 
 ### Contributors
 
-* [Vincent Shury](https://vincent440.github.io/)
+Created with :heart: by [Vincent Shury](https://www.vshury.com).
