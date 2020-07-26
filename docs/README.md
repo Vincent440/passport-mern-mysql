@@ -1,10 +1,15 @@
 # M.E.R.N Passport MySQL
+![GitHub stars](https://img.shields.io/github/stars/Vincent440/passport-mern-sql?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Vincent440/passport-mern-sql?style=social)
 
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](../LICENSE)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![David](https://img.shields.io/david/Vincent440/passport-mern-sql)
+![GitHub repo size](https://img.shields.io/github/repo-size/Vincent440/passport-mern-sql)
 
 [DEMO](https://passport-mern.Herokuapp.com/) on Heroku, the dyno may take up to 15 seconds on first reques, please be patient.
 
-Node.js using the Express framework with a React client application using MySQL to log the user in with passport with the passport-local strategy using a username and password.
+Node.js using the Express framework with a React client application using MySQL to log the user in with passport with the passport-local strategy using a username and password. Using bootstrap for basic UI with React-bootstrap
 
 My intentions creating this repository was to learn passport, as well as create a good amount of _example code for others to help them create a successful user login system with mysql express react and node.js._
 Not the Sequelize ORM that would take some modifications to setup.
@@ -22,8 +27,26 @@ git clone https://github.com/Vincent440/passport-mern-sql.git
 * Create a `.env` File and store all the database connection information,
 Or any other environment variables that will change depending on where the application is hosted.
 
-```env
+Option 1
 
+`echo` 
+
+Update the command with your specific environment and copy and run it to create a `.env` file with the key value pairs required to run the application.
+
+```
+echo PORT=3001 >> .env && echo DB_NAME=passportmern >> .env && echo DB_HOST=localhost >> .env && echo DB_USER=root >> .env && echo DB_PORT=3306 >> .env && echo DB_PW=<your password here> >> .env && echo MY_SECRET=your-most-secret-of-secrets-here >> .env
+```
+
+Option 2
+
+create the `.env` file 
+
+```bash
+touch .env
+```
+
+Then copy and paste the key values in and update them with your local config
+```env
 # Port to host application on.
 PORT=3001
 
@@ -83,6 +106,9 @@ to do the same you will need to:
   * After pressing *Connect* you have the option to either select a branch and setup automatic deployments or manually deploy whenever you want to test your latest build in a branch. up to you.
 
 ---
+
+## License
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](../LICENSE)
 
 ### Contributors
 
