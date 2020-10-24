@@ -45,7 +45,6 @@ export default class AdminDashboard extends React.Component {
                   { viewUsers ? "Cancel" : "View All Users"}
                 </Button>
               </ButtonGroup>
-              {/* Currently buttons and form not functional, Buttons will not work with current setup testing front end connection to server. */}
               { createNewUser ? <CreateUser toggleCreateComponent={this.toggleCreateUser} /> : null} 
               { viewUsers ? <ViewAllUsers toggleViewComponent={this.toggleViewUsers} /> : null} 
             </Col>

@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table'
 import API from '../utils/API';
 
-export default class ViewAllUsers extends React.Component {
+class ViewAllUsers extends React.Component {
   state = {
     users:[]
   }
@@ -12,7 +12,7 @@ export default class ViewAllUsers extends React.Component {
   }
   render(){
     return (
-      <Row className="justify-content-center">
+      <Row className='justify-content-center'>
         <h1 className="text-center text-capitalize">Viewing All User Accounts</h1>
         <Table striped bordered hover variant="light">
           <thead>
@@ -40,3 +40,5 @@ export default class ViewAllUsers extends React.Component {
     );
   }
 }
+
+export default ViewAllUsers
