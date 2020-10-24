@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import UserContext from '../UserContext';
+import UserContext from '../utils/UserContext';
 import CreateUser from '../components/CreateUser';
 import ViewAllUsers from '../components/ViewAllUsers';
 
@@ -30,13 +30,13 @@ export default class AdminDashboard extends React.Component {
           <Row className="text-center text-white">
             <Col xs="12">
               <h1 className="display-4"> Welcome Administrator </h1>
-              <h2>{ user.username} User-ID: { user.user_id}</h2>
+              <h2>{ user.username} User-ID: { user.userId}</h2>
               <h1>Access Type:</h1>
               <h2>{ user.type}</h2>
               <h1>Access Level:</h1>
-              <h2>{ user.access_id}
+              <h2>{ user.accessId}
               </h2>
-              <p> Dashboard that requires User to be logged in And Have ADMIN access / access_id = 3 </p>
+              <p> Dashboard that requires User to be logged in And Have ADMIN access / accessId = 3 </p>
               <ButtonGroup size="lg" className="mb-3" >
                 <Button variant="primary" type="button" onClick={this.toggleCreateUser}>
                   { createNewUser ? "Cancel" : "Create New User"}

@@ -8,7 +8,7 @@ module.exports = passport => {
   // used to serialize the user for the session
   passport.serializeUser(
     (user, done) => {
-      done(null, user.user_id)
+      done(null, user.userId)
     }
   )
 
@@ -35,7 +35,6 @@ module.exports = passport => {
           // console.log('attempting to get user from DB')
 
           db.User.getUserByUsernameWithPassword(username, (err, user) => {
-
             if (err) {
               // console.log('Error occured getting user from DB to compare against Posted user INFO')
 
@@ -54,16 +53,14 @@ module.exports = passport => {
               // console.log(user)
 
               bcrypt.compare(password, user.password, (err, result) => {
-
                 if (err) {
                   // console.log('error in bcrypt compare')
 
                   done(err)
                 } else if (result) {
-                  // console.log(`Successful login for User: ${user.username} ID: ${user.user_id} Type:${user.type} type-ID:${user.access_id} removing pw from userObj and attaching to future requests`)
+                  // console.log(`Successful login for User: ${user.username} ID: ${user.userId} Type:${user.type} type-ID:${user.accessId} removing pw from userObj and attaching to future requests`)
 
                   delete user.password
-
                   done(null, user)
                 } else {
                   // console.log('Passwords did not match. Failed log in')

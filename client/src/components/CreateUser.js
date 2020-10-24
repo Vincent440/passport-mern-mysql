@@ -14,9 +14,9 @@ export default class AdminCreateUser extends React.Component {
     this.handleSubmit = event => {
       event.preventDefault()
       if (this.isValidInput()) {
-        const { username, password, access_id } = this.state
+        const { username, password, accessId } = this.state
         console.log(this.state)
-        if (username.length >= 4 && password.length >= 5 && (access_id > 0 || access_id <= 3)) {
+        if (username.length >= 4 && password.length >= 5 && (accessId > 0 || accessId <= 3)) {
           console.log('making API post Request')
           API.postNewUser(this.state).then((res) => console.log(res))
         }
@@ -33,7 +33,7 @@ export default class AdminCreateUser extends React.Component {
     this.state = {
       username: '',
       password: '',
-      access_id: 1
+      accessId: 1
     }
   }
 
@@ -59,7 +59,7 @@ export default class AdminCreateUser extends React.Component {
               <Form.Row className='justify-content-center'>
                 <Form.Group controlId='newAId'>
                   <Form.Label>New User's Access Rights</Form.Label>
-                  <Form.Control size='lg' onChange={this.handleInputChange} type='number' min='1' max='3' name='access_id' placeholder='1' />
+                  <Form.Control size='lg' onChange={this.handleInputChange} type='number' min='1' max='3' name='accessId' placeholder='1' />
                 </Form.Group>
               </Form.Row>
               <Button disabled={!this.isValidInput()} className='w-50 mx-auto mb-2' type='submit' size='block' variant='success'>

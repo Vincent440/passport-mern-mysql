@@ -16,10 +16,10 @@ router.route('/status').get((req, res) => {
   } else {
     res.status(200).json({
       user: {
-        access_id: 0,
-        type: 'Guest',
-        user_id: 0,
-        username: 'guest'
+        accessId: 0,
+        type: '',
+        userId: 0,
+        username: ''
       }
     })
   }

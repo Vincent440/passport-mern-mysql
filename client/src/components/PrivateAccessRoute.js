@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
-import UserContext from '../UserContext'
-const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
+import UserContext from '../utils/UserContext'
+const PrivateAccessRoute = ({ component: Component, aId = 0, ...rest }) => (
   <UserContext.Consumer>
     {({ user }) => (
       <Route
         {...rest}
-        render={props =>
-          user.access_id >= aId ? (
+        render={(props) =>
+          user.accessId >= aId ? (
             <Component {...props} />
           ) : (
             <Redirect

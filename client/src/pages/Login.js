@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import UserContext from '../UserContext'
+import UserContext from '../utils/UserContext'
 
 class Login extends React.Component {
   constructor (props) {

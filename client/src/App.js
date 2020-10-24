@@ -9,9 +9,9 @@ import Login from './pages/Login'
 import About from './pages/About'
 import NoMatch from './pages/NoMatch'
 import TopNavbar from './components/TopNavbar' // WrappedWithRouter
-import UserContext from './UserContext'
-/* eslint-disable no-console */
+import UserContext from './utils/UserContext'
 import PrivateAccessRoute from './components/PrivateAccessRoute'
+
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -38,10 +38,10 @@ class App extends React.Component {
     }
     this.state = {
       user: {
-        access_id: 0,
-        type: 'Guest',
-        user_id: 0,
-        username: 'guest'
+        accessId: 0,
+        type: '',
+        userId: 0,
+        username: ''
       },
       getUserStatus: this.getUserStatus,
       getUserLogout: this.getUserLogout,
@@ -50,7 +50,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    if (this.state.user.access_id === 0) {
+    if (this.state.user.accessId === 0) {
       this.getUserStatus()
     }
   }
@@ -60,9 +60,9 @@ class App extends React.Component {
     return (
       <UserContext.Provider value={this.state}>
         <Router>
-          {user.access_id === 0
+          {user.accessId === 0
             ? (
-              <Container className='mx-0' fluid>
+              <Container className='d-flex justify-content-center w-100' fluid='md'>
                 <Login />
                 <Redirect to='/' />
               </Container>
@@ -70,10 +70,10 @@ class App extends React.Component {
             : (
               <div>
                 <TopNavbar />
-                <Container className='mx-0' fluid>
+                <Container className='d-flex justify-content-center' fluid='md'>
                   <Switch>
-                    <PrivateAccessRoute strict exact path='/' component={Dashboard} aId={1} />
-                    <PrivateAccessRoute strict exact path='/about' component={About} aId={1} />
+                    <PrivateAccessRoute strict exact path='/' component={Dashboard} />
+                    <PrivateAccessRoute strict exact path='/about' component={About} />
                     <PrivateAccessRoute strict exact path='/manager' component={ManagerDashboard} aId={2} />
                     <PrivateAccessRoute strict exact path='/admin' component={AdminDashboard} aId={3} />
                     <Route component={NoMatch} />

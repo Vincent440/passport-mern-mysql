@@ -6,8 +6,8 @@ import { withRouter } from 'react-router'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Button from 'react-bootstrap/Button'
 import Badge from 'react-bootstrap/Badge'
-import UserContext from '../UserContext'
-import RenderIfAId from './RenderIfAId'
+import UserContext from '../utils/UserContext'
+import RenderIfAId from '../utils/RenderIfAId'
 
 const TopNavbar = () => (
   <UserContext.Consumer>
@@ -37,7 +37,8 @@ const TopNavbar = () => (
         </Navbar.Collapse>
         <ButtonGroup size='sm' aria-label='Navbar action buttons' className='p-0'>
           <Button disabled variant='outline-light' className='text-capitalize px-1'>
-            {user.username} <Badge pill variant='light' className='p-1'>{user.type}</Badge>
+            {user.username}
+            <Badge pill variant='light' className='p-1'>{user.type}</Badge>
           </Button>
           <Button type='submit' onClick={e => getUserLogout(e)} variant='danger'>
             Log-out

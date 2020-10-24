@@ -20,14 +20,17 @@ export default class ViewAllUsers extends React.Component {
               <th>ID</th>
               <th>Username</th>
               <th>Type</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {this.state.users.map(user => (
-                <tr key={user.user_id}>
-                  <td>{user.user_id}</td>
+                <tr key={user.userId}>
+                  <td>{user.userId}</td>
                   <td>{user.username}</td>
                   <td>{user.type}</td>
+                  <td>
+                    <button type='button'>Action</button></td>
                 </tr>
               ))
             }
