@@ -1,5 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import API from './utils/API'
 import Dashboard from './pages/Dashboard'
@@ -14,7 +19,7 @@ import PrivateAccessRoute from './components/PrivateAccessRoute'
 
 class App extends React.Component {
   constructor (props) {
-    super(props)
+    super()
     this.postUserLogin = userData => {
       if (userData) {
         API.postUserLogin(userData, (err, res) => {
@@ -60,27 +65,50 @@ class App extends React.Component {
     return (
       <UserContext.Provider value={this.state}>
         <Router>
-          {user.accessId === 0
-            ? (
-              <Container className='d-flex justify-content-center w-100' fluid='md'>
-                <Login />
-                <Redirect to='/' />
+          {user.accessId === 0 ? (
+            <Container
+              className='d-flex justify-content-center w-100'
+              fluid='md'
+            >
+              <Login />
+              <Redirect to='/' />
+            </Container>
+          ) : (
+            <div>
+              <TopNavbar />
+              <Container className='d-flex justify-content-center' fluid='md'>
+                <Switch>
+                  <PrivateAccessRoute
+                    strict
+                    exact
+                    path='/'
+                    component={Dashboard}
+                  />
+                  <PrivateAccessRoute
+                    strict
+                    exact
+                    path='/about'
+                    component={About}
+                  />
+                  <PrivateAccessRoute
+                    strict
+                    exact
+                    path='/manager'
+                    component={ManagerDashboard}
+                    aId={2}
+                  />
+                  <PrivateAccessRoute
+                    strict
+                    exact
+                    path='/admin'
+                    component={AdminDashboard}
+                    aId={3}
+                  />
+                  <Route component={NoMatch} />
+                </Switch>
               </Container>
-            )
-            : (
-              <div>
-                <TopNavbar />
-                <Container className='d-flex justify-content-center' fluid='md'>
-                  <Switch>
-                    <PrivateAccessRoute strict exact path='/' component={Dashboard} />
-                    <PrivateAccessRoute strict exact path='/about' component={About} />
-                    <PrivateAccessRoute strict exact path='/manager' component={ManagerDashboard} aId={2} />
-                    <PrivateAccessRoute strict exact path='/admin' component={AdminDashboard} aId={3} />
-                    <Route component={NoMatch} />
-                  </Switch>
-                </Container>
-              </div>
-            )}
+            </div>
+          )}
         </Router>
       </UserContext.Provider>
     )

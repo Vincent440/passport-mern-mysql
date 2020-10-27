@@ -15,7 +15,10 @@ class Login extends React.Component {
     this.handleSubmit = event => {
       event.preventDefault()
       if (this.isValidInput()) {
-        this.context.postUserLogin({ username: this.state.username, password: this.state.password })
+        this.context.postUserLogin({
+          username: this.state.username,
+          password: this.state.password
+        })
       }
     }
     this.isValidInput = () => {
@@ -35,21 +38,47 @@ class Login extends React.Component {
     return (
       <Row className='justify-content-center'>
         <Col xs='10'>
-          <h1 className='text-center display-3 text-capitalize'>Welcome {this.state.username ? this.state.username : 'User'}</h1>
-          <Form disabled={!this.isValidInput()} onSubmit={e => this.handleSubmit(e)} className='text-center border p-3'>
+          <h1 className='text-center display-3 text-capitalize'>
+            Welcome {this.state.username ? this.state.username : 'User'}
+          </h1>
+          <Form
+            disabled={!this.isValidInput()}
+            onSubmit={e => this.handleSubmit(e)}
+            className='text-center border p-3'
+          >
             <Form.Row className='justify-content-center'>
               <Form.Group controlId='loginUsername'>
                 <Form.Label>Username</Form.Label>
-                <Form.Control size='lg' onChange={this.handleInputChange} autoComplete='username' type='text' name='username' placeholder='Username' />
+                <Form.Control
+                  size='lg'
+                  onChange={this.handleInputChange}
+                  autoComplete='username'
+                  type='text'
+                  name='username'
+                  placeholder='Username'
+                />
               </Form.Group>
             </Form.Row>
             <Form.Row className='justify-content-center'>
               <Form.Group controlId='loginPassword'>
                 <Form.Label>Password</Form.Label>
-                <Form.Control size='lg' onChange={this.handleInputChange} autoComplete='current-password' type='password' name='password' placeholder='Password' />
+                <Form.Control
+                  size='lg'
+                  onChange={this.handleInputChange}
+                  autoComplete='current-password'
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                />
               </Form.Group>
             </Form.Row>
-            <Button disabled={!this.isValidInput()} className='w-75 mx-auto mb-2' type='submit' size='block' variant='success'>
+            <Button
+              disabled={!this.isValidInput()}
+              className='w-75 mx-auto mb-2'
+              type='submit'
+              size='block'
+              variant='success'
+            >
               Login
             </Button>
           </Form>

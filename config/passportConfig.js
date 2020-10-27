@@ -6,26 +6,21 @@ module.exports = passport => {
   //  ======================== Passport Session Setup ============================
   // required for persistent login sessions passport needs ability to serialize and unserialize users out of session
   // used to serialize the user for the session
-  passport.serializeUser(
-    (user, done) => {
-      done(null, user.userId)
-    }
-  )
+  passport.serializeUser((user, done) => {
+    done(null, user.userId)
+  })
 
   // used to deserialize the user
 
-  passport.deserializeUser(
-    (id, done) => {
-      db.User.getUserById(id,
-        (err, data) => {
-          done(err, data)
-        }
-      )
-    }
-  )
+  passport.deserializeUser((id, done) => {
+    db.User.getUserById(id, (err, data) => {
+      done(err, data)
+    })
+  })
 
   passport.use(
-    new LocalStrategy({ passReqToCallback: true },
+    new LocalStrategy(
+      { passReqToCallback: true },
       (req, username, password, done) => {
         // console.log(`Pass port use local-strategy sign in attempt for: ${username}`)
 
@@ -78,8 +73,6 @@ module.exports = passport => {
           return done(null, false)
         }
       }
-
     )
-
   )
 }

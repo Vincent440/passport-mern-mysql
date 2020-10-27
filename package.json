@@ -4,7 +4,6 @@
   "description": "Passport yarn package for log in system for a full stack M.E.R.N applicaion",
   "main": "server.js",
   "scripts": {
-    "precommit":"yarn format",
     "debugger": "concurrently \"node --inspect-brk server.js --ignore 'client/*'\" \"yarn run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
@@ -14,8 +13,7 @@
     "install": "cd client && yarn install",
     "build": "cd client && yarn run build",
     "heroku-postbuild": "yarn run build",
-    "format": "standard --fix",
-    "lint": "standard"
+    "format": "prettier-standard --format"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -32,7 +30,7 @@
   "devDependencies": {
     "concurrently": "^5.2.0",
     "nodemon": "^2.0.4",
-    "standard": "^14.3.4"
+    "prettier-standard": "^16.4.1"
   },
   "repository": {
     "type": "git",

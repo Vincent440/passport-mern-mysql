@@ -2,7 +2,7 @@ const connection = require('../config/connection') // import the connection from
 
 // Build a user Model to export to the controllers
 const User = {
-  selectAll: (cb) => {
+  selectAll: cb => {
     const queryString = `SELECT u.userId, u.username, u.accessId, a.type 
       FROM users AS u 
       INNER JOIN accessLevels AS a 
@@ -83,7 +83,8 @@ const User = {
   },
   updateOne: (vals, id, cb) => {
     vals.push(id)
-    const queryString = 'UPDATE users SET username=?, password=?, accessId=? WHERE userId=?;'
+    const queryString =
+      'UPDATE users SET username=?, password=?, accessId=? WHERE userId=?;'
     connection.execute(queryString, vals, (err, result) => {
       if (err) throw err
       cb(result)

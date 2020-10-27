@@ -21,28 +21,55 @@ const TopNavbar = () => (
               Dashboard
             </NavLink>
             <RenderIfAId aId={2}>
-              <NavLink exact to='/manager' className='nav-link' activeClassName='active'>
+              <NavLink
+                exact
+                to='/manager'
+                className='nav-link'
+                activeClassName='active'
+              >
                 Manager
               </NavLink>
             </RenderIfAId>
             <RenderIfAId aId={3}>
-              <NavLink exact to='/admin' className='nav-link' activeClassName='active'>
+              <NavLink
+                exact
+                to='/admin'
+                className='nav-link'
+                activeClassName='active'
+              >
                 Admin
               </NavLink>
             </RenderIfAId>
-            <NavLink exact to='/about' className='nav-link' activeClassName='active'>
+            <NavLink
+              exact
+              to='/about'
+              className='nav-link'
+              activeClassName='active'
+            >
               About
             </NavLink>
           </Nav>
         </Navbar.Collapse>
-        <ButtonGroup size='sm' aria-label='Navbar action buttons' className='p-0'>
-          <Button disabled variant='outline-light' className='text-capitalize px-1'>
+        <ButtonGroup
+          size='sm'
+          aria-label='Navbar action buttons'
+          className='p-0'
+        >
+          <Button
+            disabled
+            variant='outline-light'
+            className='text-capitalize px-1'
+          >
             {`${user.username} `}
             <Badge pill variant='light' className='p-1'>
               {user.type}
             </Badge>
           </Button>
-          <Button type='submit' onClick={(e) => getUserLogout(e)} variant='danger'>
+          <Button
+            type='submit'
+            onClick={e => getUserLogout(e)}
+            variant='danger'
+          >
             Log-out
           </Button>
         </ButtonGroup>
