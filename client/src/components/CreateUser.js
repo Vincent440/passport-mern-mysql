@@ -15,7 +15,7 @@ class AdminCreateUser extends React.Component {
       event.preventDefault()
       if (this.isValidInput()) {
         const { username, password, accessId } = this.state
-        console.log(this.state)
+        // console.log(this.state)
         if (
           username.length >= 4 &&
           password.length >= 5 &&
@@ -45,7 +45,7 @@ class AdminCreateUser extends React.Component {
     return (
       <div>
         <Row className='justify-content-center'>
-          <Col xs='12' md='11' lg='10' className='border'>
+          <Col sm='11' lg='10' className='border'>
             <h1 className='text-center text-capitalize'>Create User Form.</h1>
             <Form
               disabled={!this.isValidInput()}

@@ -32,5 +32,5 @@ app.use(passport.session())
 app.use(routes)
 
 app.listen(PORT, () =>
-  console.log(`React API server listening on PORT ${PORT}.`)
+  console.log(`React API server listening on http://localhost:${PORT}`)
 )
