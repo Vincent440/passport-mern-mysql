@@ -7,10 +7,10 @@ import {
 } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import API from './utils/API'
-import Dashboard from './pages/Dashboard'
-import ManagerDashboard from './pages/ManagerDashboard'
-import AdminDashboard from './pages/AdminDashboard'
-import Login from './pages/Login'
+import Dashboard from './pages/dashboard'
+import ManagerDashboard from './pages/manager'
+import AdminDashboard from './pages/admin'
+import LoginHook from './pages/login-hook'
 import About from './pages/About'
 import NoMatch from './pages/NoMatch'
 import TopNavbar from './components/TopNavbar' // WrappedWithRouter
@@ -70,13 +70,14 @@ class App extends React.Component {
               className='d-flex justify-content-center w-100'
               fluid='md'
             >
-              <Login />
+              {/* <Login /> */}
+              <LoginHook />
               <Redirect to='/' />
             </Container>
           ) : (
             <div>
               <TopNavbar />
-              <Container className='d-flex justify-content-center' fluid='md'>
+              <Container fluid='md'>
                 <Switch>
                   <PrivateAccessRoute
                     strict
@@ -114,4 +115,5 @@ class App extends React.Component {
     )
   }
 }
+
 export default App
