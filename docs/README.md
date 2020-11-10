@@ -48,27 +48,27 @@ touch .env
 
 Then copy and paste the key values in and update them with your local config
 
-```env
+```bash
 # Port to host application on.
 PORT=3001
 
 # Name of the mysql database you will be connecting to.
-DB_NAME=mernpassportexample
+DB_NAME='passportmern'
 
 # Host name for connecting to MySQL database
-DB_HOST=hostname
+DB_HOST='localhost'
 
 #Port to connect to MySQL database
 DB_PORT=3306
 
 # User for connecting to MySQL database
-DB_USER=userstringhere
+DB_USER='root'
 
 # Password for connecting to MySQL database
-DB_PW=passwordstringhere
+DB_PW='database-password'
 
 # Secret for cookies/sessions
-MY_SECRET=your-most-secret-of-secrets-here
+MY_SECRET='your-most-secret-of-secrets-here'
 
 ```
 
