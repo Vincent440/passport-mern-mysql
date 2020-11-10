@@ -4,13 +4,13 @@ import React from 'react'
 // createContext matches the shape that the consumers expect!
 const UserContext = React.createContext({
   user: {
-    access_id: 0,
-    type: 'Guest',
-    user_id: 0,
-    username: 'guest'
+    accessId: 0,
+    type: '',
+    userId: 0,
+    username: ''
   },
-  getUserStatus: () => {},
-  postUserLogin: () => {},
-  getUserLogout: () => {}
+  getUserStatus: () => undefined,
+  postUserLogin: () => undefined,
+  getUserLogout: () => undefined
 })
 export default UserContext

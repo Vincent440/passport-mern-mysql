@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
-import UserContext from '../UserContext'
-const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
+import UserContext from '../utils/UserContext'
+
+const PrivateRoute = ({ component: Component, aId = 1, ...rest }) => (
   <UserContext.Consumer>
     {({ user }) => (
       <Route
         {...rest}
         render={props =>
-          user.access_id >= aId ? (
+          user.accessId >= aId ? (
             <Component {...props} />
           ) : (
             <Redirect
@@ -17,14 +18,16 @@ const PrivateAccessRoute = ({ component: Component, aId, ...rest }) => (
                 state: { from: props.location }
               }}
             />
-          )}
+          )
+        }
       />
     )}
   </UserContext.Consumer>
 )
-PrivateAccessRoute.propTypes = {
+
+PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
   location: PropTypes.object,
-  aId: PropTypes.number.isRequired
+  aId: PropTypes.number
 }
-export default PrivateAccessRoute
+export default PrivateRoute

@@ -6,26 +6,21 @@ module.exports = passport => {
   //  ======================== Passport Session Setup ============================
   // required for persistent login sessions passport needs ability to serialize and unserialize users out of session
   // used to serialize the user for the session
-  passport.serializeUser(
-    (user, done) => {
-      done(null, user.user_id)
-    }
-  )
+  passport.serializeUser((user, done) => {
+    done(null, user.userId)
+  })
 
   // used to deserialize the user
 
-  passport.deserializeUser(
-    (id, done) => {
-      db.User.getUserById(id,
-        (err, data) => {
-          done(err, data)
-        }
-      )
-    }
-  )
+  passport.deserializeUser((id, done) => {
+    db.User.getUserById(id, (err, data) => {
+      done(err, data)
+    })
+  })
 
   passport.use(
-    new LocalStrategy({ passReqToCallback: true },
+    new LocalStrategy(
+      { passReqToCallback: true },
       (req, username, password, done) => {
         // console.log(`Pass port use local-strategy sign in attempt for: ${username}`)
 
@@ -35,7 +30,6 @@ module.exports = passport => {
           // console.log('attempting to get user from DB')
 
           db.User.getUserByUsernameWithPassword(username, (err, user) => {
-
             if (err) {
               // console.log('Error occured getting user from DB to compare against Posted user INFO')
 
@@ -54,16 +48,14 @@ module.exports = passport => {
               // console.log(user)
 
               bcrypt.compare(password, user.password, (err, result) => {
-
                 if (err) {
                   // console.log('error in bcrypt compare')
 
                   done(err)
                 } else if (result) {
-                  // console.log(`Successful login for User: ${user.username} ID: ${user.user_id} Type:${user.type} type-ID:${user.access_id} removing pw from userObj and attaching to future requests`)
+                  // console.log(`Successful login for User: ${user.username} ID: ${user.userId} Type:${user.type} type-ID:${user.accessId} removing pw from userObj and attaching to future requests`)
 
                   delete user.password
-
                   done(null, user)
                 } else {
                   // console.log('Passwords did not match. Failed log in')
@@ -81,8 +73,6 @@ module.exports = passport => {
           return done(null, false)
         }
       }
-
     )
-
   )
 }

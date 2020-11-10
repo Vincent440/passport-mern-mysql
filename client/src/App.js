@@ -1,20 +1,25 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import API from './utils/API'
 import Dashboard from './pages/Dashboard'
-import ManagerDashboard from './pages/ManagerDashboard'
-import AdminDashboard from './pages/AdminDashboard'
+import Manager from './pages/Manager'
+import Admin from './pages/Admin'
 import Login from './pages/Login'
 import About from './pages/About'
 import NoMatch from './pages/NoMatch'
-import TopNavbar from './components/TopNavbar' // WrappedWithRouter
-import UserContext from './UserContext'
-/* eslint-disable no-console */
-import PrivateAccessRoute from './components/PrivateAccessRoute'
+import NavBar from './components/NavBar' // WrappedWithRouter
+import UserContext from './utils/UserContext'
+import PrivateRoute from './components/PrivateRoute'
+
 class App extends React.Component {
   constructor (props) {
-    super(props)
+    super()
     this.postUserLogin = userData => {
       if (userData) {
         API.postUserLogin(userData, (err, res) => {
@@ -38,10 +43,10 @@ class App extends React.Component {
     }
     this.state = {
       user: {
-        access_id: 0,
-        type: 'Guest',
-        user_id: 0,
-        username: 'guest'
+        accessId: 0,
+        type: '',
+        userId: 0,
+        username: ''
       },
       getUserStatus: this.getUserStatus,
       getUserLogout: this.getUserLogout,
@@ -50,7 +55,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    if (this.state.user.access_id === 0) {
+    if (this.state.user.accessId === 0) {
       this.getUserStatus()
     }
   }
@@ -60,30 +65,44 @@ class App extends React.Component {
     return (
       <UserContext.Provider value={this.state}>
         <Router>
-          {user.access_id === 0
-            ? (
-              <Container className='mx-0' fluid>
-                <Login />
-                <Redirect to='/' />
+          {user.accessId === 0 ? (
+            <Container
+              className='d-flex justify-content-center w-100'
+              fluid='md'
+            >
+              <Login />
+              <Redirect to='/' />
+            </Container>
+          ) : (
+            <div>
+              <NavBar />
+              <Container fluid='md'>
+                <Switch>
+                  <PrivateRoute strict exact path='/' component={Dashboard} />
+                  <PrivateRoute strict exact path='/about' component={About} />
+                  <PrivateRoute
+                    strict
+                    exact
+                    path='/manager'
+                    component={Manager}
+                    aId={2}
+                  />
+                  <PrivateRoute
+                    strict
+                    exact
+                    path='/admin'
+                    component={Admin}
+                    aId={3}
+                  />
+                  <Route component={NoMatch} />
+                </Switch>
               </Container>
-            )
-            : (
-              <div>
-                <TopNavbar />
-                <Container className='mx-0' fluid>
-                  <Switch>
-                    <PrivateAccessRoute strict exact path='/' component={Dashboard} aId={1} />
-                    <PrivateAccessRoute strict exact path='/about' component={About} aId={1} />
-                    <PrivateAccessRoute strict exact path='/manager' component={ManagerDashboard} aId={2} />
-                    <PrivateAccessRoute strict exact path='/admin' component={AdminDashboard} aId={3} />
-                    <Route component={NoMatch} />
-                  </Switch>
-                </Container>
-              </div>
-            )}
+            </div>
+          )}
         </Router>
       </UserContext.Provider>
     )
   }
 }
+
 export default App
