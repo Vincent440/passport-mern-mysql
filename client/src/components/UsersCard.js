@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row'
 import Table from 'react-bootstrap/Table'
 import API from '../utils/API'
 
-const ViewAllUsers = () => {
+const UsersCard = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -14,9 +14,7 @@ const ViewAllUsers = () => {
 
   return (
     <Row className='justify-content-center'>
-      <h1 className='text-center text-capitalize'>
-        Hook Component for Viewing all users
-      </h1>
+      <h1 className='text-center text-capitalize'>Users Card</h1>
       <Table striped bordered hover variant='light'>
         <thead>
           <tr>
@@ -43,4 +41,4 @@ const ViewAllUsers = () => {
   )
 }
 
-export default ViewAllUsers
+export default UsersCard

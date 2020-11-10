@@ -9,7 +9,7 @@ import Badge from 'react-bootstrap/Badge'
 import UserContext from '../utils/UserContext'
 import RenderIfAId from '../utils/RenderIfAId'
 
-const TopNavbar = () => (
+const NavBar = () => (
   <UserContext.Consumer>
     {({ user, getUserLogout }) => (
       <Navbar expand='md' bg='dark' variant='dark'>
@@ -78,4 +78,4 @@ const TopNavbar = () => (
   </UserContext.Consumer>
 )
 
-export default withRouter(TopNavbar)
+export default withRouter(NavBar)

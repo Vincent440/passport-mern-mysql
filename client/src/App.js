@@ -7,15 +7,15 @@ import {
 } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import API from './utils/API'
-import Dashboard from './pages/dashboard'
-import ManagerDashboard from './pages/manager'
-import AdminDashboard from './pages/admin'
-import LoginHook from './pages/login-hook'
+import Dashboard from './pages/Dashboard'
+import Manager from './pages/Manager'
+import Admin from './pages/Admin'
+import Login from './pages/Login'
 import About from './pages/About'
 import NoMatch from './pages/NoMatch'
-import TopNavbar from './components/TopNavbar' // WrappedWithRouter
+import NavBar from './components/NavBar' // WrappedWithRouter
 import UserContext from './utils/UserContext'
-import PrivateAccessRoute from './components/PrivateAccessRoute'
+import PrivateRoute from './components/PrivateRoute'
 
 class App extends React.Component {
   constructor (props) {
@@ -70,39 +70,28 @@ class App extends React.Component {
               className='d-flex justify-content-center w-100'
               fluid='md'
             >
-              {/* <Login /> */}
-              <LoginHook />
+              <Login />
               <Redirect to='/' />
             </Container>
           ) : (
             <div>
-              <TopNavbar />
+              <NavBar />
               <Container fluid='md'>
                 <Switch>
-                  <PrivateAccessRoute
-                    strict
-                    exact
-                    path='/'
-                    component={Dashboard}
-                  />
-                  <PrivateAccessRoute
-                    strict
-                    exact
-                    path='/about'
-                    component={About}
-                  />
-                  <PrivateAccessRoute
+                  <PrivateRoute strict exact path='/' component={Dashboard} />
+                  <PrivateRoute strict exact path='/about' component={About} />
+                  <PrivateRoute
                     strict
                     exact
                     path='/manager'
-                    component={ManagerDashboard}
+                    component={Manager}
                     aId={2}
                   />
-                  <PrivateAccessRoute
+                  <PrivateRoute
                     strict
                     exact
                     path='/admin'
-                    component={AdminDashboard}
+                    component={Admin}
                     aId={3}
                   />
                   <Route component={NoMatch} />

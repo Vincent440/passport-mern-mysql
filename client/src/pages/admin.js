@@ -2,10 +2,10 @@ import React from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import UserContext from '../utils/UserContext'
-import NewUserForm from '../components/new-user-form'
-import UsersCard from '../components/users-card'
+import NewUserForm from '../components/NewUserForm'
+import UsersCard from '../components/UsersCard'
 
-const AdminDashboard = () => (
+const Admin = () => (
   <UserContext.Consumer>
     {({ user }) => (
       <>
@@ -38,4 +38,4 @@ const AdminDashboard = () => (
   </UserContext.Consumer>
 )
 
-export default AdminDashboard
+export default Admin

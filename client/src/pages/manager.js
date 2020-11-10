@@ -1,7 +1,7 @@
 import React from 'react'
 import UserContext from '../utils/UserContext'
 
-const ManagerDashboard = () => (
+const Manager = () => (
   <UserContext.Consumer>
     {({ user }) => (
       <div className='text-center text-white'>
@@ -20,4 +20,4 @@ const ManagerDashboard = () => (
   </UserContext.Consumer>
 )
 
-export default ManagerDashboard
+export default Manager

@@ -35,9 +35,7 @@ const NewUserForm = () => {
     <div>
       <Row className='justify-content-center'>
         <Col sm='11' lg='10' className='border'>
-          <h1 className='text-center text-capitalize'>
-            Hook Create User Form.
-          </h1>
+          <h1 className='text-center text-capitalize'>New User Form</h1>
           <Form
             disabled={!isValidInput()}
             onSubmit={e => handleSubmit(e)}
