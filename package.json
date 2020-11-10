@@ -37,5 +37,9 @@
     "url": "git+https://github.com/Vincent440/passport-mern-sql"
   },
   "author": "Vincent Shury",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "^12",
+    "yarn": "^1.22"
+  }
 }
