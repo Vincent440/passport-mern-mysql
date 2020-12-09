@@ -1,18 +1,16 @@
 {
   "name": "passportmern",
   "version": "1.0.1",
-  "description": "Passport yarn package for log in system for a full stack M.E.R.N applicaion",
+  "description": "Passport npm package for log in system for a full stack M.E.R.N applicaion",
   "main": "server.js",
   "scripts": {
-    "debugger": "concurrently \"node --inspect-brk server.js --ignore 'client/*'\" \"yarn run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "if-env NODE_ENV=production && yarn run start:prod || yarn run start:dev",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"yarn run client\"",
-    "client": "cd client && yarn run start",
-    "install": "cd client && yarn install",
-    "build": "cd client && yarn run build",
-    "heroku-postbuild": "yarn run build",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
     "format": "prettier-standard --format"
   },
   "dependencies": {
@@ -37,9 +35,5 @@
     "url": "git+https://github.com/Vincent440/passport-mern-sql"
   },
   "author": "Vincent Shury",
-  "license": "MIT",
-  "engines": {
-    "node": "^12",
-    "yarn": "^1.22"
-  }
+  "license": "MIT"
 }
