@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -17,53 +17,28 @@ import NavBar from './components/NavBar' // WrappedWithRouter
 import UserContext from './utils/UserContext'
 import PrivateRoute from './components/PrivateRoute'
 
-class App extends React.Component {
-  constructor (props) {
-    super()
-    this.postUserLogin = userData => {
-      if (userData) {
-        API.postUserLogin(userData, (err, res) => {
-          if (err === true) {
-            return console.log('an error occurred failed to log user in.')
-          }
-          this.setState({ user: res.user })
-        })
-      }
-    }
-    this.getUserLogout = event => {
-      event.preventDefault()
-      API.getLoggedOut().then(this.getUserStatus)
-    }
-    this.getUserStatus = () => {
-      API.getLoginStatus().then(res => {
-        if (res) {
-          this.setState({ user: res.user })
-        }
+const App = () => {
+  const [user, setUser] = useState({
+    accessId: 0,
+    type: '',
+    userId: 0,
+    username: ''
+  })
+
+  useEffect(() => {
+    console.log('useEffect App.js ln:29')
+
+    API.getLoginStatus()
+      .then(res => {
+        console.log(res.user)
+        setUser(res.user)
       })
-    }
-    this.state = {
-      user: {
-        accessId: 0,
-        type: '',
-        userId: 0,
-        username: ''
-      },
-      getUserStatus: this.getUserStatus,
-      getUserLogout: this.getUserLogout,
-      postUserLogin: this.postUserLogin
-    }
-  }
+      .catch(error => console.log(error))
+  }, [setUser])
 
-  componentDidMount () {
-    if (this.state.user.accessId === 0) {
-      this.getUserStatus()
-    }
-  }
-
-  render () {
-    const { user } = this.state
-    return (
-      <UserContext.Provider value={this.state}>
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      <div className='bg-secondary'>
         <Router>
           {user.accessId === 0 ? (
             <Container
@@ -74,7 +49,7 @@ class App extends React.Component {
               <Redirect to='/' />
             </Container>
           ) : (
-            <div>
+            <>
               <NavBar />
               <Container fluid='md'>
                 <Switch>
@@ -97,12 +72,12 @@ class App extends React.Component {
                   <Route component={NoMatch} />
                 </Switch>
               </Container>
-            </div>
+            </>
           )}
         </Router>
-      </UserContext.Provider>
-    )
-  }
+      </div>
+    </UserContext.Provider>
+  )
 }
 
 export default App

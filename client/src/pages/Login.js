@@ -1,14 +1,25 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext} from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import UserContext from '../utils/UserContext'
+import API from '../utils/API'
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const { postUserLogin } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
+
+  // useEffect(() => {
+  //   if(user.username === ''){
+  //     console.log("Login.js UseEffect")
+  //     API.getLoginStatus().then(response =>{
+  //       console.log(response.user)
+  //       setUser(response.user)
+  //     }).catch(userStatusError => console.log(userStatusError))
+  //   }
+  // },[user.username])
 
   const isValidInput = () => {
     if (username.length < 4 || password.length < 5) {
@@ -18,7 +29,19 @@ const Login = () => {
   }
   const handleSubmit = event => {
     event.preventDefault()
-    postUserLogin({ username, password })
+    if (user.username === "") {
+      API.postUserLogin({ username, password }, (err, res) => {
+        if (err === true) {
+          return console.log('an error occurred failed to log user in.')
+        } else {
+          setUser({ user: res.user })
+        }
+      })
+    }
+    else {
+      console.log('User is already logged in')
+    }
+
   }
   return (
     <Row className='justify-content-center'>

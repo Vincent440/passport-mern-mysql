@@ -22,7 +22,7 @@ export default {
   getLoggedOut: async () => {
     try {
       const res = await axios.get('/api/logout')
-      return res
+      return res.data
     } catch (err) {
       return console.log(err)
     }

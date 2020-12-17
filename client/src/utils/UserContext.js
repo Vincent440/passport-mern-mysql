@@ -9,8 +9,6 @@ const UserContext = React.createContext({
     userId: 0,
     username: ''
   },
-  getUserStatus: () => undefined,
-  postUserLogin: () => undefined,
-  getUserLogout: () => undefined
+  setUser: () => undefined
 })
 export default UserContext

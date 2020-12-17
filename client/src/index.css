@@ -1,0 +1,17 @@
+html {
+  font-size: 10px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: none;
+  width: 100vw;
+  height: 100vh;
+  font-size: 2rem;
+}
+
+#root {
+  border: 1px #00a816 solid;
+}
+
