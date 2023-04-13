@@ -26,15 +26,13 @@ const App = () => {
   })
 
   useEffect(() => {
-    console.log('useEffect App.js ln:29')
-
     API.getLoginStatus()
       .then(res => {
         console.log(res.user)
         setUser(res.user)
       })
       .catch(error => console.log(error))
-  }, [setUser])
+  }, [])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -42,7 +40,6 @@ const App = () => {
         <Router>
           {user.accessId === 0 ? (
             <Container
-              className='d-flex justify-content-center w-100'
               fluid='md'
             >
               <Login />

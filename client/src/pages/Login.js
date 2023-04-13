@@ -44,15 +44,15 @@ const Login = () => {
 
   }
   return (
-    <Row className='justify-content-center'>
+    <Row className='text-center '>
       <Col xs='10'>
-        <h1 className='text-center display-3 text-capitalize'>
+        <h1 className='display-3 text-capitalize'>
           Welcome {username ? username : 'User'}
         </h1>
         <Form
           disabled={!isValidInput()}
           onSubmit={e => handleSubmit(e)}
-          className='text-center border p-3'
+          className='border p-3'
         >
           <Form.Row className='justify-content-center'>
             <Form.Group controlId='loginUsername'>

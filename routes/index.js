@@ -6,7 +6,7 @@ const path = require('path')
 router.use('/api', apiRoutes)
 
 // =========== SEND REACT PRODUCTION BUILD ====================
-router.get('*', (req, res) => {
+router.use( (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
